@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌟 Matemáticas Singapur</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFD93D;
+    --coral: #FF6B6B;
+    --mint: #6BCB77;
+    --sky: #4D96FF;
+    --lavender: #C77DFF;
+    --orange: #FF9A3C;
+    --pink: #FF6FB4;
+    --dark: #1a1a2e;
+    --white: #FFFEF7;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ===== SCREENS ===== */
+  .screen { display: none; min-height: 100vh; }
+  .screen.active { display: block; }
+
+  /* ===== HOME SCREEN ===== */
+  #home {
+    background: linear-gradient(135deg, #fff9e6 0%, #ffe8f5 50%, #e8f4ff 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  #home.active { display: flex; }
+
+  .bg-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float 6s ease-in-out infinite;
+  }
+  .shape:nth-child(1) { width:200px;height:200px;background:var(--yellow);top:-60px;left:-60px;animation-delay:0s; }
+  .shape:nth-child(2) { width:150px;height:150px;background:var(--coral);bottom:50px;right:-40px;animation-delay:1s; }
+  .shape:nth-child(3) { width:120px;height:120px;background:var(--sky);top:40%;left:10%;animation-delay:2s; }
+  .shape:nth-child(4) { width:180px;height:180px;background:var(--mint);bottom:-40px;left:30%;animation-delay:0.5s; }
+  .shape:nth-child(5) { width:100px;height:100px;background:var(--lavender);top:20%;right:15%;animation-delay:1.5s; }
+
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+  }
+
+  .home-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .home-title span { display: block; }
+  .home-title .line1 { color: var(--coral); }
+  .home-title .line2 { color: var(--sky); }
+  .home-title .line3 { color: var(--mint); font-size: 0.65em; }
+
+  .home-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 50px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    font-weight: 600;
+  }
+
+  .girl-cards {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .girl-card {
+    width: 280px;
+    border-radius: 28px;
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid transparent;
+  }
+
+  .girl-card:hover {
+    transform: translateY(-12px) scale(1.03);
+  }
+
+  .girl-card.card-1 {
+    background: linear-gradient(145deg, #fff3e0, #ffe0b2);
+    border-color: var(--orange);
+    box-shadow: 0 10px 40px rgba(255,154,60,0.3);
+  }
+  .girl-card.card-5 {
+    background: linear-gradient(145deg, #e8f5fe, #bbdefb);
+    border-color: var(--sky);
+    box-shadow: 0 10px 40px rgba(77,150,255,0.3);
+  }
+  .girl-card:hover.card-1 { box-shadow: 0 20px 60px rgba(255,154,60,0.45); }
+  .girl-card:hover.card-5 { box-shadow: 0 20px 60px rgba(77,150,255,0.45); }
+
+  .card-emoji {
+    font-size: 5rem;
+    display: block;
+    margin-bottom: 15px;
+    animation: wiggle 3s ease-in-out infinite;
+  }
+  .card-2-emoji { animation-delay: 1s; }
+
+  @keyframes wiggle {
+    0%,100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+  }
+
+  .card-grade {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .card-1 .card-grade { color: var(--orange); }
+  .card-5 .card-grade { color: var(--sky); }
+
+  .card-desc {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .card-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: white;
+  }
+  .card-btn:hover { transform: scale(1.05); }
+  .card-1 .card-btn { background: var(--orange); box-shadow: 0 4px 15px rgba(255,154,60,0.4); }
+  .card-5 .card-btn { background: var(--sky); box-shadow: 0 4px 15px rgba(77,150,255,0.4); }
+
+  /* ===== LEVEL SCREENS ===== */
+  .level-screen {
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+
+  #nivel1 { background: linear-gradient(180deg, #fff8f0 0%, #fff3e8 100%); }
+  #nivel5 { background: linear-gradient(180deg, #f0f7ff 0%, #e8f3ff 100%); }
+
+  .level-header {
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+  #nivel1 .level-header { background: rgba(255,248,240,0.9); border-bottom: 3px solid var(--orange); }
+  #nivel5 .level-header { background: rgba(240,247,255,0.9); border-bottom: 3px solid var(--sky); }
+
+  .back-btn {
+    background: none;
+    border: 3px solid currentColor;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  #nivel1 .back-btn { color: var(--orange); }
+  #nivel5 .back-btn { color: var(--sky); }
+  .back-btn:hover { transform: scale(1.1); background: rgba(0,0,0,0.05); }
+
+  .level-header-title {
+    font-family: 'Baloo 2', cursive;
+    font-weight: 800;
+    font-size: 1.5rem;
+    flex: 1;
+  }
+  #nivel1 .level-header-title { color: var(--orange); }
+  #nivel5 .level-header-title { color: var(--sky); }
+
+  .score-badge {
+    background: white;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  }
+  #nivel1 .score-badge { color: var(--orange); }
+  #nivel5 .score-badge { color: var(--sky); }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 0;
+    padding: 20px 30px 0;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 10px 22px;
+    border-radius: 12px 12px 0 0;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+    background: rgba(0,0,0,0.06);
+    color: #888;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .tab.active {
+    color: white;
+  }
+  #nivel1 .tab.active { background: var(--orange); }
+  #nivel5 .tab.active { background: var(--sky); }
+
+  .tab-content {
+    display: none;
+    padding: 25px 25px;
+  }
+  .tab-content.active { display: block; }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* EXERCISE CARDS */
+  .exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .exercise-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 5px solid transparent;
+  }
+  .exercise-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.12); }
+  #nivel1 .exercise-card { border-left-color: var(--orange); }
+  #nivel5 .exercise-card { border-left-color: var(--sky); }
+
+  .exercise-card.correct { border-left-color: var(--mint) !important; background: #f6fff7; }
+  .exercise-card.wrong { border-left-color: var(--coral) !important; background: #fff5f5; }
+
+  .exercise-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 8px;
+  }
+
+  .exercise-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .exercise-hint {
+    font-size: 0.82rem;
+    color: #999;
+    font-style: italic;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  /* BAR MODEL VISUAL */
+  .bar-model {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 14px;
+    font-size: 0.85rem;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
+  }
+  .bar-visual {
+    height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 800;
+    min-width: 30px;
+  }
+  .bar-label { min-width: 60px; font-size: 0.78rem; }
+
+  /* ANSWER INPUT */
+  .answer-area {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .answer-input {
+    flex: 1;
+    min-width: 80px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: border-color 0.2s;
+    outline: none;
+    background: #fafafa;
+  }
+  .answer-input:focus { border-color: var(--sky); background: white; }
+  .answer-input.correct-input { border-color: var(--mint); background: #f6fff7; }
+  .answer-input.wrong-input { border-color: var(--coral); background: #fff5f5; }
+
+  .check-btn {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: white;
+    white-space: nowrap;
+  }
+  .check-btn:hover { transform: scale(1.05); }
+  #nivel1 .check-btn { background: var(--orange); }
+  #nivel5 .check-btn { background: var(--sky); }
+
+  .feedback {
+    margin-top: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    min-height: 20px;
+    transition: all 0.3s;
+  }
+  .feedback.correct { color: var(--mint); }
+  .feedback.wrong { color: var(--coral); }
+
+  /* RESULTS SCREEN */
+  .results-panel {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    margin-top: 10px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.08);
+  }
+
+  .results-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .result-stat {
+    text-align: center;
+    padding: 20px 15px;
+    border-radius: 18px;
+    background: #f8f9fa;
+  }
+  .result-stat .stat-num {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2.8rem;
+    font-weight: 800;
+    display: block;
+    line-height: 1;
+  }
+  .result-stat .stat-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .stat-correct .stat-num { color: var(--mint); }
+  .stat-wrong .stat-num { color: var(--coral); }
+  .stat-pending .stat-num { color: var(--yellow); }
+  .stat-score .stat-num { color: var(--lavender); }
+
+  .results-list-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 14px;
+  }
+
+  .result-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #555;
+  }
+  .result-item.r-correct { background: #f0fff4; }
+  .result-item.r-wrong { background: #fff5f5; }
+  .result-item.r-pending { background: #fffbf0; }
+  .result-item .r-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .result-item .r-text { flex: 1; line-height: 1.4; }
+  .result-item .r-answer { font-size: 0.8rem; color: #999; margin-top: 2px; }
+
+  .reset-btn {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    font-family: 'Baloo 2', cursive;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .reset-btn:hover { transform: scale(1.02); }
+  #nivel1 .reset-btn { background: var(--orange); box-shadow: 0 4px 20px rgba(255,154,60,0.35); }
+  #nivel5 .reset-btn { background: var(--sky); box-shadow: 0 4px 20px rgba(77,150,255,0.35); }
+
+  /* SINGAPORE BAR MODEL DIAGRAM STYLES */
+  .singapore-box {
+    background: linear-gradient(135deg, #f8f9fa, #eef1f5);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+    border: 1.5px dashed #dde;
+  }
+  .singapore-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #aaa;
+    margin-bottom: 10px;
+  }
+
+  .num-frame {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+  }
+  .num-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: white;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  }
+  .num-box.ten { background: var(--coral); }
+  .num-box.one { background: var(--sky); }
+  .num-box.empty { background: #ddd; color: #bbb; }
+
+  /* NUMBER LINE */
+  .number-line {
+    position: relative;
+    height: 40px;
+    margin: 10px 0;
+  }
+  .nl-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #ddd;
+    border-radius: 2px;
+    transform: translateY(-50%);
+  }
+  .nl-point {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--orange);
+    z-index: 1;
+  }
+  .nl-label {
+    position: absolute;
+    top: -18px;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #666;
+    white-space: nowrap;
+  }
+
+  /* PART-WHOLE CIRCLE */
+  .part-whole {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .pw-box {
+    background: white;
+    border: 3px solid;
+    border-radius: 12px;
+    padding: 10px 14px;
+    text-align: center;
+    min-width: 60px;
+  }
+  .pw-label { font-size: 0.7rem; font-weight: 700; color: #aaa; text-transform: uppercase; }
+  .pw-value { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; }
+
+  /* PROGRESS BAR */
+  .progress-container {
+    background: #f0f0f0;
+    border-radius: 50px;
+    height: 10px;
+    margin-bottom: 6px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 50px;
+    transition: width 0.6s ease;
+  }
+  #nivel1 .progress-fill { background: linear-gradient(90deg, var(--yellow), var(--orange)); }
+  #nivel5 .progress-fill { background: linear-gradient(90deg, var(--sky), var(--lavender)); }
+
+  .star-rating {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 10px 0;
+    letter-spacing: 4px;
+  }
+
+  /* Decorative top banner for cards */
+  .card-banner {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    border-radius: 20px 20px 0 0;
+  }
+  .card-1 .card-banner { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+  .card-5 .card-banner { background: linear-gradient(90deg, var(--sky), var(--lavender)); }
+
+  @media (max-width: 600px) {
+    .tabs { padding: 15px 15px 0; }
+    .tab-content { padding: 18px 15px; }
+    .exercise-grid { grid-template-columns: 1fr; }
+    .girl-cards { flex-direction: column; align-items: center; }
+  }
+
+  /* Celebration animation */
+  @keyframes pop {
+    0% { transform: scale(0.8); opacity: 0; }
+    60% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .pop { animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+  .confetti-emoji {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<!-- ============ HOME ============ -->
+<div id="home" class="screen active">
+  <div class="bg-shapes">
+    <div class="shape"></div><div class="shape"></div>
+    <div class="shape"></div><div class="shape"></div><div class="shape"></div>
+  </div>
+
+  <div class="home-title">
+    <span class="line1">🌟 Matemáticas</span>
+    <span class="line2">Singapur</span>
+    <span class="line3">¿Quién eres tú?</span>
+  </div>
+  <p class="home-subtitle">Elige tu curso y ¡a aprender! 🎉</p>
+
+  <div class="girl-cards">
+    <div class="girl-card card-1" onclick="showLevel(1)">
+      <div class="card-banner"></div>
+      <span class="card-emoji">🌸</span>
+      <div class="card-grade">1º de Primaria</div>
+      <div class="card-desc">Números, sumas y restas<br>¡Empezamos a contar!</div>
+      <button class="card-btn">¡Entrar! →</button>
+    </div>
+    <div class="girl-card card-5" onclick="showLevel(5)">
+      <div class="card-banner"></div>
+      <span class="card-emoji card-2-emoji">🦋</span>
+      <div class="card-grade">5º de Primaria</div>
+      <div class="card-desc">Fracciones, decimales<br>y problemas avanzados</div>
+      <button class="card-btn">¡Entrar! →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NIVEL 1 ============ -->
+<div id="nivel1" class="screen level-screen">
+  <div class="level-header">
+    <button class="back-btn" onclick="showHome()">←</button>
+    <div class="level-header-title">🌸 1º de Primaria</div>
+    <div class="score-badge" id="score1-badge">⭐ 0 pts</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('nivel1', 0, this)">🔢 Sumas</button>
+    <button class="tab" onclick="showTab('nivel1', 1, this)">➖ Restas</button>
+    <button class="tab" onclick="showTab('nivel1', 2, this)">🧩 Problemas</button>
+    <button class="tab" onclick="showTab('nivel1', 3, this)">📊 Resultados</button>
+  </div>
+
+  <!-- TAB 0: SUMAS -->
+  <div class="tab-content active" id="nivel1-tab0">
+    <div class="section-label">🔢 Sumas — Partes y Total</div>
+    <div class="exercise-grid" id="grid1-sumas"></div>
+  </div>
+
+  <!-- TAB 1: RESTAS -->
+  <div class="tab-content" id="nivel1-tab1">
+    <div class="section-label">➖ Restas — Quitar y Quedar</div>
+    <div class="exercise-grid" id="grid1-restas"></div>
+  </div>
+
+  <!-- TAB 2: PROBLEMAS -->
+  <div class="tab-content" id="nivel1-tab2">
+    <div class="section-label">🧩 Problemas con Modelo de Barras</div>
+    <div class="exercise-grid" id="grid1-problemas"></div>
+  </div>
+
+  <!-- TAB 3: RESULTADOS -->
+  <div class="tab-content" id="nivel1-tab3">
+    <div class="section-label">📊 Mis Resultados</div>
+    <div class="results-panel" id="results1-panel"></div>
+  </div>
+</div>
+
+<!-- ============ NIVEL 5 ============ -->
+<div id="nivel5" class="screen level-screen">
+  <div class="level-header">
+    <button class="back-btn" onclick="showHome()">←</button>
+    <div class="level-header-title">🦋 5º de Primaria</div>
+    <div class="score-badge" id="score5-badge">⭐ 0 pts</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('nivel5', 0, this)">🔢 Operaciones</button>
+    <button class="tab" onclick="showTab('nivel5', 1, this)">🍕 Fracciones</button>
+    <button class="tab" onclick="showTab('nivel5', 2, this)">🧩 Problemas</button>
+    <button class="tab" onclick="showTab('nivel5', 3, this)">📊 Resultados</button>
+  </div>
+
+  <!-- TAB 0: OPERACIONES -->
+  <div class="tab-content active" id="nivel5-tab0">
+    <div class="section-label">🔢 Operaciones y Razonamiento</div>
+    <div class="exercise-grid" id="grid5-ops"></div>
+  </div>
+
+  <!-- TAB 1: FRACCIONES -->
+  <div class="tab-content" id="nivel5-tab1">
+    <div class="section-label">🍕 Fracciones y Decimales</div>
+    <div class="exercise-grid" id="grid5-fracciones"></div>
+  </div>
+
+  <!-- TAB 2: PROBLEMAS -->
+  <div class="tab-content" id="nivel5-tab2">
+    <div class="section-label">🧩 Problemas con Modelo de Barras</div>
+    <div class="exercise-grid" id="grid5-problemas"></div>
+  </div>
+
+  <!-- TAB 3: RESULTADOS -->
+  <div class="tab-content" id="nivel5-tab3">
+    <div class="section-label">📊 Mis Resultados</div>
+    <div class="results-panel" id="results5-panel"></div>
+  </div>
+</div>
+
+<script>
+// ========== DATA ==========
+
+const exercises1 = {
+  sumas: [
+    {
+      id: 's1-1', num: 1,
+      text: '¿Cuánto es 4 + 3?',
+      hint: 'Cuenta 4 cubos y añade 3 más.',
+      visual: `<div class="singapore-box"><div class="singapore-title">🔲 Partes y Total</div>
+        <div class="part-whole">
+          <div class="pw-box" style="border-color:var(--orange)"><div class="pw-label">Parte</div><div class="pw-value" style="color:var(--orange)">4</div></div>
+          <div style="font-size:1.5rem">+</div>
+          <div class="pw-box" style="border-color:var(--sky)"><div class="pw-label">Parte</div><div class="pw-value" style="color:var(--sky)">3</div></div>
+          <div style="font-size:1.5rem">=</div>
+          <div class="pw-box" style="border-color:var(--mint)"><div class="pw-label">Total</div><div class="pw-value" style="color:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 7, points: 10
+    },
+    {
+      id: 's1-2', num: 2,
+      text: '¿Cuánto es 6 + 5?',
+      hint: 'Primero llega a 10, luego suma lo que queda.',
+      visual: `<div class="singapore-box"><div class="singapore-title">🎯 Estrategia: llegar a 10</div>
+        <div class="num-frame">
+          <div class="num-box ten">6</div><div style="padding:12px;font-weight:800;">+</div>
+          <div class="num-box one">4</div><div style="padding:12px;font-weight:800;">=</div>
+          <div class="num-box ten" style="background:var(--mint)">10</div>
+          <div style="padding:12px;font-weight:800;">+</div>
+          <div class="num-box one">1</div>
+        </div></div>`,
+      answer: 11, points: 10
+    },
+    {
+      id: 's1-3', num: 3,
+      text: '¿Cuánto es 8 + 7?',
+      hint: 'Descompón el 7 en 2 + 5 para llegar a 10.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📦 Descomponer para sumar</div>
+        <div class="part-whole">
+          <div class="pw-box" style="border-color:var(--coral)"><div class="pw-label">Parte</div><div class="pw-value" style="color:var(--coral)">8</div></div>
+          <div style="font-size:1.5rem">+</div>
+          <div class="pw-box" style="border-color:var(--lavender)"><div class="pw-label">Parte</div><div class="pw-value" style="color:var(--lavender)">7</div></div>
+          <div style="font-size:1.5rem">=</div>
+          <div class="pw-box" style="border-color:var(--mint)"><div class="pw-label">Total</div><div class="pw-value" style="color:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 15, points: 10
+    },
+    {
+      id: 's1-4', num: 4,
+      text: '¿Cuánto es 10 + 9?',
+      hint: 'El 10 te ayuda: ¿cuánto hay después del 10?',
+      visual: `<div class="singapore-box"><div class="singapore-title">🔢 Tabla de valor posicional</div>
+        <div class="num-frame">
+          <div class="num-box ten">10</div>
+          <div style="padding:10px;font-weight:800;">+</div>
+          <div class="num-box one">9</div>
+          <div style="padding:10px;font-weight:800;">=</div>
+          <div class="num-box empty">?</div>
+        </div></div>`,
+      answer: 19, points: 10
+    },
+    {
+      id: 's1-5', num: 5,
+      text: 'Completa: 5 + ___ = 12',
+      hint: 'Piensa: ¿cuánto le falta al 5 para llegar a 12?',
+      visual: `<div class="singapore-box"><div class="singapore-title">🧩 Número desconocido</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:var(--mint)">12</div></div>
+          <div class="bar-row"><span class="bar-label">Parte 1:</span><div class="bar-visual" style="width:41%;background:var(--orange)">5</div><div class="bar-visual" style="width:56%;background:#ddd;color:#aaa">?</div></div>
+        </div></div>`,
+      answer: 7, points: 15
+    },
+    {
+      id: 's1-6', num: 6,
+      text: '¿Cuánto es 13 + 6?',
+      hint: 'Suma primero las unidades: 3 + 6 = ?',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Decenas y unidades</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Parte 1:</span><div class="bar-visual" style="width:60%;background:var(--sky)">13</div></div>
+          <div class="bar-row"><span class="bar-label">Parte 2:</span><div class="bar-visual" style="width:27%;background:var(--orange)">6</div></div>
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:88%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 19, points: 10
+    },
+  ],
+  restas: [
+    {
+      id: 'r1-1', num: 1,
+      text: '¿Cuánto es 9 − 4?',
+      hint: 'Empieza con 9, quita 4. ¿Cuántos quedan?',
+      visual: `<div class="singapore-box"><div class="singapore-title">➖ Quitar del total</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:90%;background:var(--coral)">9</div></div>
+          <div class="bar-row"><span class="bar-label">Quitamos:</span><div class="bar-visual" style="width:40%;background:#ddd;color:#aaa">4</div><div class="bar-visual" style="width:47%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 5, points: 10
+    },
+    {
+      id: 'r1-2', num: 2,
+      text: '¿Cuánto es 12 − 5?',
+      hint: 'Primero quita hasta 10, luego quita lo que falta.',
+      visual: `<div class="singapore-box"><div class="singapore-title">🎯 Restar en dos pasos</div>
+        <div class="part-whole">
+          <div class="pw-box" style="border-color:var(--coral)"><div class="pw-label">Total</div><div class="pw-value" style="color:var(--coral)">12</div></div>
+          <div style="font-size:1.5rem">−</div>
+          <div class="pw-box" style="border-color:var(--orange)"><div class="pw-label">Quito</div><div class="pw-value" style="color:var(--orange)">5</div></div>
+          <div style="font-size:1.5rem">=</div>
+          <div class="pw-box" style="border-color:var(--mint)"><div class="pw-label">Quedan</div><div class="pw-value" style="color:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 7, points: 10
+    },
+    {
+      id: 'r1-3', num: 3,
+      text: '¿Cuánto es 15 − 8?',
+      hint: 'Descompón el 8 para restar primero hasta 10.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📦 Descomponer para restar</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:var(--coral)">15</div></div>
+          <div class="bar-row"><span class="bar-label">Quito:</span><div class="bar-visual" style="width:53%;background:#ddd;color:#aaa">8</div><div class="bar-visual" style="width:44%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 7, points: 10
+    },
+    {
+      id: 'r1-4', num: 4,
+      text: 'Completa: 17 − ___ = 9',
+      hint: 'Piensa al revés: 9 + ___ = 17',
+      visual: `<div class="singapore-box"><div class="singapore-title">🔄 La resta como número desconocido</div>
+        <div class="part-whole">
+          <div class="pw-box" style="border-color:var(--sky)"><div class="pw-label">Queda</div><div class="pw-value" style="color:var(--sky)">9</div></div>
+          <div style="font-size:1.5rem">+</div>
+          <div class="pw-box" style="border-color:var(--lavender)"><div class="pw-label">Quito</div><div class="pw-value" style="color:var(--lavender)">?</div></div>
+          <div style="font-size:1.5rem">=</div>
+          <div class="pw-box" style="border-color:var(--coral)"><div class="pw-label">Total</div><div class="pw-value" style="color:var(--coral)">17</div></div>
+        </div></div>`,
+      answer: 8, points: 15
+    },
+    {
+      id: 'r1-5', num: 5,
+      text: '¿Cuánto es 20 − 13?',
+      hint: 'Puedes contar hacia adelante desde 13 hasta 20.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Modelo de barras</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:var(--coral)">20</div></div>
+          <div class="bar-row"><span class="bar-label">Quito:</span><div class="bar-visual" style="width:65%;background:#ddd;color:#aaa">13</div><div class="bar-visual" style="width:32%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 7, points: 10
+    },
+  ],
+  problemas: [
+    {
+      id: 'p1-1', num: 1,
+      text: 'Luna tiene 5 manzanas. Su mamá le da 4 más. ¿Cuántas manzanas tiene ahora?',
+      hint: 'Dibuja una barra para cada parte y júntalas.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Modelo de barras — Unir partes</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Luna tenía:</span><div class="bar-visual" style="width:45%;background:var(--orange)">5 🍎</div></div>
+          <div class="bar-row"><span class="bar-label">Le dan:</span><div class="bar-visual" style="width:36%;background:var(--sky)">4 🍎</div></div>
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:82%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 9, points: 20
+    },
+    {
+      id: 'p1-2', num: 2,
+      text: 'En el parque hay 10 pájaros. Vuelan 3. ¿Cuántos quedan?',
+      hint: 'El total menos lo que se va = lo que queda.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Modelo de barras — Quitar</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Había:</span><div class="bar-visual" style="width:100%;background:var(--sky)">10 🐦</div></div>
+          <div class="bar-row"><span class="bar-label">Vuelan:</span><div class="bar-visual" style="width:30%;background:var(--coral)">3</div><div class="bar-visual" style="width:67%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 7, points: 20
+    },
+    {
+      id: 'p1-3', num: 3,
+      text: 'Sofía tiene 6 lápices rojos y 8 lápices azules. ¿Cuántos lápices tiene en total?',
+      hint: 'Suma los dos grupos de lápices.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Comparar dos cantidades</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Rojos:</span><div class="bar-visual" style="width:50%;background:var(--coral)">6 ✏️</div></div>
+          <div class="bar-row"><span class="bar-label">Azules:</span><div class="bar-visual" style="width:66%;background:var(--sky)">8 ✏️</div></div>
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 14, points: 20
+    },
+    {
+      id: 'p1-4', num: 4,
+      text: 'Hay 15 niños en clase. 7 son niñas. ¿Cuántos son niños?',
+      hint: 'Total = niñas + niños. Despeja los niños.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Número desconocido</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:var(--mint)">15 👦👧</div></div>
+          <div class="bar-row"><span class="bar-label">Niñas:</span><div class="bar-visual" style="width:47%;background:var(--pink)">7 👧</div><div class="bar-visual" style="width:50%;background:var(--sky)">? 👦</div></div>
+        </div></div>`,
+      answer: 8, points: 20
+    },
+  ]
+};
+
+const exercises5 = {
+  ops: [
+    {
+      id: 'o5-1', num: 1,
+      text: '¿Cuánto es 324 × 6?',
+      hint: 'Descompón: 300×6 + 20×6 + 4×6',
+      visual: `<div class="singapore-box"><div class="singapore-title">📦 Propiedad distributiva</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">300 × 6 =</span><div class="bar-visual" style="width:70%;background:var(--sky)">1.800</div></div>
+          <div class="bar-row"><span class="bar-label">20 × 6 =</span><div class="bar-visual" style="width:25%;background:var(--orange)">120</div></div>
+          <div class="bar-row"><span class="bar-label">4 × 6 =</span><div class="bar-visual" style="width:12%;background:var(--coral)">24</div></div>
+          <div class="bar-row"><span class="bar-label">Total =</span><div class="bar-visual" style="width:100%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 1944, points: 15
+    },
+    {
+      id: 'o5-2', num: 2,
+      text: '¿Cuánto es 756 ÷ 4?',
+      hint: 'Descompón 756 = 400 + 320 + 36. Divide cada parte.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 División por descomposición</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">756 ÷ 4</span><div class="bar-visual" style="width:88%;background:var(--lavender)">756</div></div>
+          <div class="bar-row"><span class="bar-label">400 ÷ 4 =</span><div class="bar-visual" style="width:47%;background:var(--sky)">100</div></div>
+          <div class="bar-row"><span class="bar-label">320 ÷ 4 =</span><div class="bar-visual" style="width:38%;background:var(--orange)">80</div></div>
+          <div class="bar-row"><span class="bar-label">36 ÷ 4 =</span><div class="bar-visual" style="width:11%;background:var(--coral)">9</div></div>
+        </div></div>`,
+      answer: 189, points: 15
+    },
+    {
+      id: 'o5-3', num: 3,
+      text: 'Calcula el mínimo común múltiplo de 4 y 6.',
+      hint: 'Lista los múltiplos de 4 y de 6 hasta encontrar el primero en común.',
+      visual: `<div class="singapore-box"><div class="singapore-title">🔢 Múltiplos</div>
+        <div style="font-size:0.85rem;font-weight:700;color:#666;line-height:2">
+        Múltiplos de 4: 4, 8, <span style="color:var(--mint);font-size:1rem">12</span>, 16…<br>
+        Múltiplos de 6: 6, <span style="color:var(--mint);font-size:1rem">12</span>, 18…
+        </div></div>`,
+      answer: 12, points: 15
+    },
+    {
+      id: 'o5-4', num: 4,
+      text: 'Resuelve: 4² + 3² = ?',
+      hint: '4² = 4×4 y 3² = 3×3. Suma los resultados.',
+      visual: `<div class="singapore-box"><div class="singapore-title">🔷 Cuadrados</div>
+        <div class="part-whole">
+          <div class="pw-box" style="border-color:var(--sky)"><div class="pw-label">4²</div><div class="pw-value" style="color:var(--sky)">16</div></div>
+          <div style="font-size:1.5rem">+</div>
+          <div class="pw-box" style="border-color:var(--orange)"><div class="pw-label">3²</div><div class="pw-value" style="color:var(--orange)">9</div></div>
+          <div style="font-size:1.5rem">=</div>
+          <div class="pw-box" style="border-color:var(--mint)"><div class="pw-label">Total</div><div class="pw-value" style="color:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 25, points: 15
+    },
+    {
+      id: 'o5-5', num: 5,
+      text: 'Ordena de mayor a menor. ¿Cuál es el segundo mayor? 0.7 · 0.35 · 1.2 · 0.9',
+      hint: 'Escribe los decimales con las mismas posiciones para compararlos.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📏 Ordenar decimales (escribe el 2º mayor)</div>
+        <div style="font-size:0.85rem;font-weight:700;color:#666;line-height:2">
+        Mayor → <span style="color:var(--coral)">1.2</span>, <span style="color:var(--sky)">?</span>, 0.70, 0.35 ← Menor
+        </div></div>`,
+      answer: 0.9, points: 15
+    },
+  ],
+  fracciones: [
+    {
+      id: 'f5-1', num: 1,
+      text: '¿Cuánto es 1/2 + 1/4?',
+      hint: 'Convierte 1/2 a cuartos: 1/2 = 2/4. Luego suma.',
+      visual: `<div class="singapore-box"><div class="singapore-title">🍕 Modelo de área — Fracciones</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">1/2 =</span><div class="bar-visual" style="width:50%;background:var(--coral)">½</div><div class="bar-visual" style="width:47%;background:#eee;color:#ccc">½</div></div>
+          <div class="bar-row"><span class="bar-label">1/4 =</span><div class="bar-visual" style="width:25%;background:var(--sky)">¼</div><div class="bar-visual" style="width:72%;background:#eee;color:#ccc">⬜⬜⬜</div></div>
+          <div class="bar-row"><span class="bar-label">Suma =</span><div class="bar-visual" style="width:75%;background:var(--mint)">?/4</div></div>
+        </div></div>`,
+      answer: '3/4', points: 20, isText: true
+    },
+    {
+      id: 'f5-2', num: 2,
+      text: '¿Cuánto es 2/3 × 3/5? Escribe la fracción simplificada.',
+      hint: 'Multiplica numeradores y denominadores, luego simplifica.',
+      visual: `<div class="singapore-box"><div class="singapore-title">✖️ Multiplicar fracciones</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Numerador:</span><div class="bar-visual" style="width:60%;background:var(--sky)">2 × 3 = ?</div></div>
+          <div class="bar-row"><span class="bar-label">Denominador:</span><div class="bar-visual" style="width:70%;background:var(--orange)">3 × 5 = ?</div></div>
+          <div class="bar-row"><span class="bar-label">Simplifica:</span><div class="bar-visual" style="width:40%;background:var(--mint)">?/?</div></div>
+        </div></div>`,
+      answer: '2/5', points: 20, isText: true
+    },
+    {
+      id: 'f5-3', num: 3,
+      text: 'Convierte 3/4 a decimal.',
+      hint: 'Divide 3 entre 4.',
+      visual: `<div class="singapore-box"><div class="singapore-title">🔄 Fracción ↔ Decimal</div>
+        <div class="part-whole">
+          <div class="pw-box" style="border-color:var(--lavender)"><div class="pw-label">Fracción</div><div class="pw-value" style="color:var(--lavender)">3/4</div></div>
+          <div style="font-size:2rem">→</div>
+          <div class="pw-box" style="border-color:var(--mint)"><div class="pw-label">Decimal</div><div class="pw-value" style="color:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 0.75, points: 15
+    },
+    {
+      id: 'f5-4', num: 4,
+      text: '¿Cuánto es 5/6 − 1/3? Escribe la fracción simplificada.',
+      hint: 'Convierte 1/3 a sextos: 1/3 = 2/6.',
+      visual: `<div class="singapore-box"><div class="singapore-title">➖ Restar fracciones</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">5/6 =</span><div class="bar-visual" style="width:83%;background:var(--sky)">5/6</div></div>
+          <div class="bar-row"><span class="bar-label">− 1/3 =</span><div class="bar-visual" style="width:33%;background:var(--coral)">2/6</div></div>
+          <div class="bar-row"><span class="bar-label">Queda =</span><div class="bar-visual" style="width:50%;background:var(--mint)">?/6</div></div>
+        </div></div>`,
+      answer: '1/2', points: 20, isText: true
+    },
+    {
+      id: 'f5-5', num: 5,
+      text: '¿Qué porcentaje es 3/5?',
+      hint: 'Multiplica la fracción por 100. 3÷5 × 100 = ?',
+      visual: `<div class="singapore-box"><div class="singapore-title">% Fracción a Porcentaje</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">100%</span><div class="bar-visual" style="width:100%;background:var(--mint)">100%</div></div>
+          <div class="bar-row"><span class="bar-label">3/5 =</span><div class="bar-visual" style="width:60%;background:var(--sky)">?%</div></div>
+        </div></div>`,
+      answer: 60, points: 15
+    },
+  ],
+  problemas: [
+    {
+      id: 'pp5-1', num: 1,
+      text: 'María tiene 240 cromos. Pedro tiene el triple. ¿Cuántos cromos tienen entre los dos?',
+      hint: 'Primero calcula cuánto tiene Pedro, luego suma ambos.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Modelo de barras — Multiplicación</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">María:</span><div class="bar-visual" style="width:25%;background:var(--pink)">240</div></div>
+          <div class="bar-row"><span class="bar-label">Pedro:</span><div class="bar-visual" style="width:74%;background:var(--sky)">240 × 3 = ?</div></div>
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:var(--mint)">?</div></div>
+        </div></div>`,
+      answer: 960, points: 25
+    },
+    {
+      id: 'pp5-2', num: 2,
+      text: 'Una piscina tiene 1.500 litros. Se llena 3/5 de su capacidad. ¿Cuántos litros hay?',
+      hint: 'Calcula 3/5 de 1.500. Divide entre 5 y multiplica por 3.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Fracción de una cantidad</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:var(--sky)">1.500 L</div></div>
+          <div class="bar-row"><span class="bar-label">1/5 =</span><div class="bar-visual" style="width:20%;background:var(--orange)">300</div></div>
+          <div class="bar-row"><span class="bar-label">3/5 =</span><div class="bar-visual" style="width:60%;background:var(--mint)">? L</div></div>
+        </div></div>`,
+      answer: 900, points: 25
+    },
+    {
+      id: 'pp5-3', num: 3,
+      text: 'Un libro tiene 320 páginas. Ana lleva leídas el 25%. ¿Cuántas páginas le faltan?',
+      hint: 'Calcula el 25% de 320. Luego réstalo al total.',
+      visual: `<div class="singapore-box"><div class="singapore-title">📊 Porcentaje y complemento</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:var(--lavender)">320 páginas</div></div>
+          <div class="bar-row"><span class="bar-label">Leído (25%):</span><div class="bar-visual" style="width:25%;background:var(--orange)">?</div><div class="bar-visual" style="width:72%;background:var(--sky)">Falta</div></div>
+        </div></div>`,
+      answer: 240, points: 25
+    },
+    {
+      id: 'pp5-4', num: 4,
+      text: 'En una tienda, una mochila cuesta 48€. Le hacen un descuento del 25%. ¿Cuánto pagas?',
+      hint: 'Descuento = 25% de 48. Precio final = 48 − descuento.',
+      visual: `<div class="singapore-box"><div class="singapore-title">💰 Descuentos — Porcentaje</div>
+        <div class="bar-model">
+          <div class="bar-row"><span class="bar-label">Precio:</span><div class="bar-visual" style="width:100%;background:var(--coral)">48 €</div></div>
+          <div class="bar-row"><span class="bar-label">Descuento:</span><div class="bar-visual" style="width:25%;background:var(--orange)">25%</div><div class="bar-visual" style="width:72%;background:var(--mint)">Pagas: ?</div></div>
+        </div></div>`,
+      answer: 36, points: 25
+    },
+  ]
+};
+
+// ========== STATE ==========
+const state = {
+  1: { answers: {}, score: 0 },
+  5: { answers: {}, score: 0 }
+};
+
+// ========== NAVIGATION ==========
+function showHome() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('home').classList.add('active');
+}
+
+function showLevel(n) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('nivel' + n).classList.add('active');
+  renderLevel(n);
+}
+
+function showTab(levelId, tabIdx, btn) {
+  const tabs = document.querySelectorAll('#' + levelId + ' .tab');
+  const contents = document.querySelectorAll('#' + levelId + ' .tab-content');
+  tabs.forEach(t => t.classList.remove('active'));
+  contents.forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  contents[tabIdx].classList.add('active');
+
+  if (tabIdx === 3) {
+    const lvl = levelId === 'nivel1' ? 1 : 5;
+    renderResults(lvl);
+  }
+}
+
+// ========== RENDER ==========
+function renderLevel(n) {
+  if (n === 1) {
+    renderGrid('grid1-sumas', exercises1.sumas, 1);
+    renderGrid('grid1-restas', exercises1.restas, 1);
+    renderGrid('grid1-problemas', exercises1.problemas, 1);
+  } else {
+    renderGrid('grid5-ops', exercises5.ops, 5);
+    renderGrid('grid5-fracciones', exercises5.fracciones, 5);
+    renderGrid('grid5-problemas', exercises5.problemas, 5);
+  }
+  updateScoreBadge(n);
+}
+
+function renderGrid(containerId, items, lvl) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  container.innerHTML = '';
+  items.forEach(ex => {
+    const ans = state[lvl].answers[ex.id];
+    const statusClass = ans ? (ans.correct ? 'correct' : 'wrong') : '';
+    container.innerHTML += `
+      <div class="exercise-card ${statusClass}" id="card-${ex.id}">
+        <div class="exercise-num">Ejercicio ${ex.num}</div>
+        <div class="exercise-text">${ex.text}</div>
+        <div class="exercise-hint">💡 ${ex.hint}</div>
+        ${ex.visual}
+        <div class="answer-area">
+          <input class="answer-input ${ans ? (ans.correct ? 'correct-input' : 'wrong-input') : ''}"
+            id="input-${ex.id}" type="text"
+            placeholder="${ex.isText ? 'Ej: 3/4' : 'Tu respuesta'}"
+            value="${ans ? ans.given : ''}"
+            ${ans && ans.correct ? 'disabled' : ''}
+            onkeydown="if(event.key==='Enter') checkAnswer('${ex.id}', ${lvl}, ${JSON.stringify(ex.answer).replace(/"/g, '&quot;')}, ${ex.points}, ${ex.isText || false})"
+          />
+          <button class="check-btn" onclick="checkAnswer('${ex.id}', ${lvl}, ${JSON.stringify(ex.answer).replace(/"/g, '&quot;')}, ${ex.points}, ${ex.isText || false})"
+            ${ans && ans.correct ? 'disabled' : ''}>
+            ✓ Comprobar
+          </button>
+        </div>
+        <div class="feedback ${ans ? (ans.correct ? 'correct' : 'wrong') : ''}" id="fb-${ex.id}">
+          ${ans ? (ans.correct ? '🌟 ¡Correcto! +' + ex.points + ' puntos' : '❌ Incorrecto. Inténtalo de nuevo.') : ''}
+        </div>
+      </div>`;
+  });
+}
+
+function checkAnswer(id, lvl, correctAnswer, points, isText) {
+  const input = document.getElementById('input-' + id);
+  const fb = document.getElementById('fb-' + id);
+  const card = document.getElementById('card-' + id);
+  const given = input.value.trim();
+  if (!given) return;
+
+  let correct = false;
+  if (isText) {
+    // Compare fractions: normalize "3/4" style
+    correct = normalizeFraction(given) === normalizeFraction(String(correctAnswer));
+  } else {
+    const num = parseFloat(given.replace(',', '.'));
+    correct = Math.abs(num - parseFloat(correctAnswer)) < 0.001;
+  }
+
+  const prevAns = state[lvl].answers[id];
+  if (prevAns && prevAns.correct) return;
+
+  state[lvl].answers[id] = { correct, given, points: correct ? points : 0 };
+
+  if (correct) {
+    if (!prevAns || !prevAns.correct) state[lvl].score += points;
+    card.className = 'exercise-card correct pop';
+    input.className = 'answer-input correct-input';
+    input.disabled = true;
+    fb.textContent = '🌟 ¡Correcto! +' + points + ' puntos';
+    fb.className = 'feedback correct';
+    document.querySelector('#nivel' + lvl + ' .check-btn[onclick*="' + id + '"]').disabled = true;
+  } else {
+    card.className = 'exercise-card wrong';
+    input.className = 'answer-input wrong-input';
+    fb.textContent = '❌ No es correcto. Pista: ' + (isText ? 'Escribe la fracción como 3/4' : 'Revisa tu cálculo.');
+    fb.className = 'feedback wrong';
+  }
+  updateScoreBadge(lvl);
+}
+
+function normalizeFraction(str) {
+  str = str.replace(/\s/g, '');
+  if (str.includes('/')) {
+    const [n, d] = str.split('/').map(Number);
+    if (!d) return str;
+    const g = gcd(Math.abs(n), Math.abs(d));
+    return (n/g) + '/' + (d/g);
+  }
+  return str;
+}
+function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }
+
+function updateScoreBadge(lvl) {
+  document.getElementById('score' + lvl + '-badge').textContent = '⭐ ' + state[lvl].score + ' pts';
+}
+
+function renderResults(lvl) {
+  const panel = document.getElementById('results' + lvl + '-panel');
+  const allExercises = lvl === 1
+    ? [...exercises1.sumas, ...exercises1.restas, ...exercises1.problemas]
+    : [...exercises5.ops, ...exercises5.fracciones, ...exercises5.problemas];
+
+  const totalPts = allExercises.reduce((s, e) => s + e.points, 0);
+  const correctList = allExercises.filter(e => state[lvl].answers[e.id]?.correct);
+  const wrongList = allExercises.filter(e => state[lvl].answers[e.id] && !state[lvl].answers[e.id].correct);
+  const pendingList = allExercises.filter(e => !state[lvl].answers[e.id]);
+  const pct = Math.round((state[lvl].score / totalPts) * 100);
+  const stars = pct >= 90 ? '⭐⭐⭐' : pct >= 60 ? '⭐⭐' : pct >= 30 ? '⭐' : '';
+
+  panel.innerHTML = `
+    <div class="results-summary">
+      <div class="result-stat stat-correct"><span class="stat-num">${correctList.length}</span><span class="stat-label">Correctas</span></div>
+      <div class="result-stat stat-wrong"><span class="stat-num">${wrongList.length}</span><span class="stat-label">Incorrectas</span></div>
+      <div class="result-stat stat-pending"><span class="stat-num">${pendingList.length}</span><span class="stat-label">Sin hacer</span></div>
+      <div class="result-stat stat-score"><span class="stat-num">${state[lvl].score}</span><span class="stat-label">Puntos / ${totalPts}</span></div>
+    </div>
+    <div class="progress-container"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div style="text-align:right;font-size:0.8rem;color:#aaa;margin-bottom:8px;font-weight:700">${pct}% completado</div>
+    <div class="star-rating">${stars || '✨ ¡Sigue practicando!'}</div>
+    <div class="results-list-title">Detalle por ejercicio:</div>
+    ${allExercises.map(e => {
+      const ans = state[lvl].answers[e.id];
+      if (!ans) return `<div class="result-item r-pending"><span class="r-icon">⏳</span><div class="r-text">${e.text}</div></div>`;
+      if (ans.correct) return `<div class="result-item r-correct"><span class="r-icon">✅</span><div class="r-text">${e.text}<div class="r-answer">Tu respuesta: <b>${ans.given}</b> (+${e.points} pts)</div></div></div>`;
+      return `<div class="result-item r-wrong"><span class="r-icon">❌</span><div class="r-text">${e.text}<div class="r-answer">Tu respuesta: <b>${ans.given}</b> | Correcta: <b>${e.answer}</b></div></div></div>`;
+    }).join('')}
+    <button class="reset-btn" onclick="resetLevel(${lvl})">🔄 Reiniciar ejercicios</button>`;
+}
+
+function resetLevel(lvl) {
+  state[lvl] = { answers: {}, score: 0 };
+  updateScoreBadge(lvl);
+  renderLevel(lvl);
+  // Switch to first tab
+  const levelId = 'nivel' + lvl;
+  const tabs = document.querySelectorAll('#' + levelId + ' .tab');
+  const contents = document.querySelectorAll('#' + levelId + ' .tab-content');
+  tabs.forEach((t,i) => { t.classList.toggle('active', i===0); });
+  contents.forEach((c,i) => { c.classList.toggle('active', i===0); });
+}
+</script>
+</body>
+</html>

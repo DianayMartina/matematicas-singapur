@@ -36,7 +36,7 @@
   @keyframes wiggle{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
   .card-grade{font-family:'Baloo 2',cursive;font-size:2rem;font-weight:800;margin-bottom:4px;}
   .card-1 .card-grade{color:var(--orange);}.card-5 .card-grade{color:var(--sky);}
-  .card-desc{font-size:.88rem;color:#777;font-weight:600;margin-bottom:18px;line-height:1.4;}
+  .card-desc{font-size:.88rem;color:#777;font-weight:600;margin-bottom:18px;line-height:1.5;}
   .card-btn{padding:11px 26px;border-radius:50px;font-family:'Baloo 2',cursive;font-weight:700;font-size:1rem;border:none;cursor:pointer;color:white;transition:transform .2s;}
   .card-btn:hover{transform:scale(1.05);}
   .card-1 .card-btn{background:var(--orange);}.card-5 .card-btn{background:var(--sky);}
@@ -47,8 +47,8 @@
   #nivel1{background:linear-gradient(180deg,#fff8f0,#fff3e8);}
   #nivel5{background:linear-gradient(180deg,#f0f7ff,#e8f3ff);}
   .level-header{padding:14px 18px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px);}
-  #nivel1 .level-header{background:rgba(255,248,240,.93);border-bottom:3px solid var(--orange);}
-  #nivel5 .level-header{background:rgba(240,247,255,.93);border-bottom:3px solid var(--sky);}
+  #nivel1 .level-header{background:rgba(255,248,240,.95);border-bottom:3px solid var(--orange);}
+  #nivel5 .level-header{background:rgba(240,247,255,.95);border-bottom:3px solid var(--sky);}
   .back-btn{background:none;border:3px solid currentColor;border-radius:50%;width:40px;height:40px;font-size:1.1rem;cursor:pointer;transition:transform .2s;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   #nivel1 .back-btn{color:var(--orange);}#nivel5 .back-btn{color:var(--sky);}
   .back-btn:hover{transform:scale(1.1);}
@@ -71,14 +71,14 @@
   .exercise-card.correct{border-left-color:var(--mint)!important;background:#f6fff7;}
   .exercise-card.wrong{border-left-color:var(--coral)!important;background:#fff5f5;}
   .exercise-num{font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#bbb;margin-bottom:5px;}
-  .exercise-text{font-size:.95rem;font-weight:700;color:#333;margin-bottom:5px;line-height:1.5;}
+  .exercise-text{font-size:.97rem;font-weight:700;color:#333;margin-bottom:5px;line-height:1.5;}
   .exercise-hint{font-size:.78rem;color:#aaa;font-style:italic;margin-bottom:11px;line-height:1.4;}
   .singapore-box{background:#f8f9fa;border-radius:11px;padding:12px;margin-bottom:12px;border:1.5px dashed #dde;}
   .singapore-title{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#bbb;margin-bottom:8px;}
   .bar-model{font-size:.82rem;}
   .bar-row{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-weight:600;color:#555;}
-  .bar-visual{height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:.72rem;font-weight:800;min-width:26px;padding:0 5px;}
-  .bar-label{min-width:68px;font-size:.74rem;}
+  .bar-visual{height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;font-size:.72rem;font-weight:800;min-width:26px;padding:0 5px;transition:width .4s;}
+  .bar-label{min-width:72px;font-size:.74rem;flex-shrink:0;}
   .part-whole{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;}
   .pw-box{background:white;border:3px solid;border-radius:9px;padding:7px 11px;text-align:center;min-width:52px;}
   .pw-label{font-size:.66rem;font-weight:700;color:#aaa;text-transform:uppercase;}
@@ -88,32 +88,29 @@
   .answer-input:focus{border-color:var(--sky);background:white;}
   .answer-input.correct-input{border-color:var(--mint);background:#f6fff7;}
   .answer-input.wrong-input{border-color:var(--coral);background:#fff5f5;}
-  .check-btn{padding:9px 15px;border-radius:9px;border:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:.86rem;cursor:pointer;color:white;white-space:nowrap;transition:transform .2s;}
-  .check-btn:hover{transform:scale(1.05);}
+  .check-btn{padding:9px 15px;border-radius:9px;border:none;font-family:'Nunito',sans-serif;font-weight:800;font-size:.86rem;cursor:pointer;color:white;white-space:nowrap;transition:transform .2s,opacity .2s;}
+  .check-btn:hover:not(:disabled){transform:scale(1.05);}
+  .check-btn:disabled{opacity:.5;cursor:default;}
   #nivel1 .check-btn{background:var(--orange);}#nivel5 .check-btn{background:var(--sky);}
   .feedback{margin-top:6px;font-size:.83rem;font-weight:700;min-height:17px;}
   .feedback.correct{color:var(--mint);}.feedback.wrong{color:var(--coral);}
-  .ai-loading{text-align:center;padding:45px 20px;}
-  .ai-spinner{width:48px;height:48px;border-radius:50%;border:5px solid #eee;margin:0 auto 14px;animation:spin .8s linear infinite;}
-  #nivel1 .ai-spinner{border-top-color:var(--orange);}#nivel5 .ai-spinner{border-top-color:var(--sky);}
-  @keyframes spin{to{transform:rotate(360deg);}}
-  .ai-loading-text{font-family:'Baloo 2',cursive;font-size:1.05rem;font-weight:700;color:#aaa;}
-  .completion-banner{background:white;border-radius:20px;padding:26px;text-align:center;box-shadow:0 6px 28px rgba(0,0,0,.1);margin-bottom:18px;}
-  .completion-emoji{font-size:3.2rem;display:block;margin-bottom:8px;}
-  .completion-title{font-family:'Baloo 2',cursive;font-size:1.5rem;font-weight:800;margin-bottom:5px;}
+  .completion-banner{background:white;border-radius:20px;padding:28px;text-align:center;box-shadow:0 6px 28px rgba(0,0,0,.1);margin-bottom:18px;}
+  .completion-emoji{font-size:3.5rem;display:block;margin-bottom:8px;}
+  .completion-title{font-family:'Baloo 2',cursive;font-size:1.6rem;font-weight:800;margin-bottom:5px;}
   #nivel1 .completion-title{color:var(--orange);}#nivel5 .completion-title{color:var(--sky);}
-  .completion-sub{color:#888;font-size:.92rem;font-weight:600;margin-bottom:18px;}
-  .next-btn{padding:13px 30px;border-radius:13px;border:none;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05rem;color:white;cursor:pointer;transition:transform .2s;}
+  .completion-sub{color:#888;font-size:.93rem;font-weight:600;margin-bottom:20px;line-height:1.5;}
+  .next-btn{padding:14px 32px;border-radius:13px;border:none;font-family:'Baloo 2',cursive;font-weight:700;font-size:1.1rem;color:white;cursor:pointer;transition:transform .2s,box-shadow .2s;}
   .next-btn:hover{transform:scale(1.04);}
-  #nivel1 .next-btn{background:var(--orange);}#nivel5 .next-btn{background:var(--sky);}
+  #nivel1 .next-btn{background:var(--orange);box-shadow:0 4px 18px rgba(255,154,60,.4);}
+  #nivel5 .next-btn{background:var(--sky);box-shadow:0 4px 18px rgba(77,150,255,.4);}
   .results-panel{background:white;border-radius:20px;padding:24px;box-shadow:0 6px 26px rgba(0,0,0,.08);}
   .results-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:11px;margin-bottom:20px;}
   .result-stat{text-align:center;padding:14px 10px;border-radius:14px;background:#f8f9fa;}
   .result-stat .stat-num{font-family:'Baloo 2',cursive;font-size:2.2rem;font-weight:800;display:block;line-height:1;}
-  .result-stat .stat-label{font-size:.74rem;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.4px;}
+  .result-stat .stat-label{font-size:.74rem;font-weight:700;color:#999;text-transform:uppercase;}
   .stat-correct .stat-num{color:var(--mint);}.stat-wrong .stat-num{color:var(--coral);}
   .stat-rounds .stat-num{color:var(--sky);}.stat-score .stat-num{color:var(--lavender);}
-  .results-list-title{font-family:'Baloo 2',cursive;font-size:.98rem;font-weight:700;color:#444;margin-bottom:10px;}
+  .results-list-title{font-family:'Baloo 2',cursive;font-size:.98rem;font-weight:700;color:#444;margin-bottom:10px;margin-top:14px;}
   .result-item{display:flex;align-items:flex-start;gap:9px;padding:9px 13px;border-radius:9px;margin-bottom:6px;font-size:.83rem;font-weight:600;color:#555;}
   .result-item.r-correct{background:#f0fff4;}.result-item.r-wrong{background:#fff5f5;}
   .r-icon{font-size:.95rem;flex-shrink:0;margin-top:1px;}.r-text{flex:1;line-height:1.4;}
@@ -124,12 +121,12 @@
   #nivel5 .progress-fill{background:linear-gradient(90deg,var(--sky),var(--lavender));}
   .star-rating{font-size:1.5rem;text-align:center;margin:7px 0;letter-spacing:4px;}
   .reset-btn{display:block;width:100%;margin-top:18px;padding:12px;border-radius:12px;border:none;font-family:'Baloo 2',cursive;font-weight:700;font-size:.98rem;color:white;cursor:pointer;transition:transform .2s;}
+  .reset-btn:hover{transform:scale(1.01);}
   #nivel1 .reset-btn{background:var(--orange);}#nivel5 .reset-btn{background:var(--sky);}
   @keyframes pop{0%{transform:scale(.8);opacity:0;}60%{transform:scale(1.1);}100%{transform:scale(1);opacity:1;}}
   .pop{animation:pop .4s cubic-bezier(.34,1.56,.64,1) both;}
   @media(max-width:600px){
-    .tabs{padding:10px 10px 0;}
-    .tab-content{padding:12px 10px;}
+    .tabs{padding:10px 10px 0;}.tab-content{padding:12px 10px;}
     .exercise-grid{grid-template-columns:1fr;}
     .girl-cards{flex-direction:column;align-items:center;}
     .girl-card{width:100%;max-width:310px;}
@@ -141,8 +138,7 @@
 <!-- HOME -->
 <div id="home" class="screen active">
   <div class="bg-shapes">
-    <div class="shape"></div><div class="shape"></div>
-    <div class="shape"></div><div class="shape"></div><div class="shape"></div>
+    <div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div>
   </div>
   <div class="home-title">
     <span class="line1">🌟 Matemáticas</span>
@@ -231,18 +227,430 @@
 </div>
 
 <script>
-const state={
-  1:{score:0,history:[],sections:{sumas:{rounds:0,current:[],answered:0},restas:{rounds:0,current:[],answered:0},problemas:{rounds:0,current:[],answered:0}}},
-  5:{score:0,history:[],sections:{ops:{rounds:0,current:[],answered:0},fracciones:{rounds:0,current:[],answered:0},problemas:{rounds:0,current:[],answered:0}}}
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  1: { score:0, history:[], sections:{
+    sumas:    {rounds:0, current:[], answered:0},
+    restas:   {rounds:0, current:[], answered:0},
+    problemas:{rounds:0, current:[], answered:0}
+  }},
+  5: { score:0, history:[], sections:{
+    ops:       {rounds:0, current:[], answered:0},
+    fracciones:{rounds:0, current:[], answered:0},
+    problemas: {rounds:0, current:[], answered:0}
+  }}
 };
 
-function showHome(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('home').classList.add('active');}
+// ============================================================
+// HELPERS
+// ============================================================
+function r(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function gcd(a,b){ return b===0?a:gcd(b,a%b); }
+function simplify(n,d){ const g=gcd(Math.abs(n),Math.abs(d)); return [n/g, d/g]; }
+function normalizeFraction(str){
+  str = str.replace(/\s/g,'');
+  if(str.includes('/')){
+    const parts = str.split('/');
+    const n = parseInt(parts[0]), d = parseInt(parts[1]);
+    if(isNaN(n)||isNaN(d)||d===0) return str;
+    const g = gcd(Math.abs(n),Math.abs(d));
+    return (n/g)+'/'+(d/g);
+  }
+  return str;
+}
+
+// Context words for story problems
+const animals1  = ['mariposas','pájaros','gatitos','conejitos','tortugas','peces','mariquitas','ranas'];
+const objects1  = ['pegatinas','lápices','caramelos','globos','flores','cromos','pompones','botones'];
+const names1    = ['Luna','Sofía','Martina','Lía','Eva','Noa','Iris','Alba'];
+const places1   = ['el parque','el jardín','la clase','la granja','el bosque','la playa'];
+
+const names5    = ['María','Laura','Claudia','Sara','Ana','Elena','Paula','Marta'];
+const shops5    = ['librería','tienda de ropa','mercado','papelería','juguetería','zapatería'];
+const items5    = ['libros','camisetas','naranjas','cuadernos','puzzles','zapatillas'];
+
+// ============================================================
+// EXERCISE GENERATORS — LEVEL 1
+// ============================================================
+function gen1_sumas(){
+  const exs = [];
+  const types = ['basic','make10','unknown','story'];
+  const used = new Set();
+  for(let i=0;i<4;i++){
+    const type = types[i];
+    let ex;
+    do { ex = make1_suma(type, i+1); } while(used.has(ex.text));
+    used.add(ex.text);
+    exs.push(ex);
+  }
+  return exs;
+}
+
+function make1_suma(type, num){
+  const id = 's1_'+Date.now()+'_'+num;
+  if(type==='basic'){
+    const a=r(1,9), b=r(1,9);
+    return {id, text:`¿Cuánto es ${a} + ${b}?`,
+      hint:`Cuenta ${a} objetos y añade ${b} más. Modelo partes y total.`,
+      visual: visualPartWhole(a,b,a+b,'var(--orange)','var(--yellow)'),
+      answer:a+b, points:10, isText:false};
+  }
+  if(type==='make10'){
+    const a=r(6,9), b=r(2,9);
+    return {id, text:`¿Cuánto es ${a} + ${b}?`,
+      hint:`Lleva el ${a} al 10: necesitas ${10-a}. Luego suma ${b-(10-a)} más.`,
+      visual: visualMake10(a,b,'var(--orange)'),
+      answer:a+b, points:10, isText:false};
+  }
+  if(type==='unknown'){
+    const a=r(3,9), total=r(a+2,20);
+    return {id, text:`Completa: ${a} + ___ = ${total}`,
+      hint:`¿Cuánto le falta al ${a} para llegar a ${total}? Modelo de barras.`,
+      visual: visualBarUnknown(a, total-a, total, 'var(--orange)','var(--yellow)'),
+      answer:total-a, points:12, isText:false};
+  }
+  // story
+  const name=pick(names1), obj=pick(objects1), a=r(3,10), b=r(2,10);
+  return {id, text:`${name} tiene ${a} ${obj}. Le dan ${b} más. ¿Cuántos tiene ahora?`,
+    hint:`Une las dos partes: ${a} y ${b}. Total = parte 1 + parte 2.`,
+    visual: visualBarSum(a,b,'var(--orange)','var(--yellow)'),
+    answer:a+b, points:15, isText:false};
+}
+
+function gen1_restas(){
+  const types = ['basic','back10','unknown','story'];
+  return types.map((type,i) => make1_resta(type, i+1));
+}
+
+function make1_resta(type, num){
+  const id = 'r1_'+Date.now()+'_'+num;
+  if(type==='basic'){
+    const b=r(1,9), a=r(b+1,18);
+    return {id, text:`¿Cuánto es ${a} − ${b}?`,
+      hint:`Empieza con ${a} y quita ${b}. ¿Cuántos quedan?`,
+      visual: visualBarMinus(a,b,'var(--coral)','var(--mint)'),
+      answer:a-b, points:10, isText:false};
+  }
+  if(type==='back10'){
+    const a=r(11,18), b=r(3,9);
+    return {id, text:`¿Cuánto es ${a} − ${b}?`,
+      hint:`Resta primero hasta 10: ${a}−${a-10}=10. Luego quita ${b-(a-10)} más.`,
+      visual: visualBarMinus(a,b,'var(--coral)','var(--mint)'),
+      answer:a-b, points:10, isText:false};
+  }
+  if(type==='unknown'){
+    const res=r(2,9), b=r(2,9), a=res+b;
+    return {id, text:`Completa: ${a} − ___ = ${res}`,
+      hint:`Piensa al revés: ${res} + ___ = ${a}.`,
+      visual: visualBarUnknown(res, b, a, 'var(--coral)','var(--mint)'),
+      answer:b, points:12, isText:false};
+  }
+  const name=pick(names1), obj=pick(objects1), a=r(10,20), b=r(2,9);
+  const action=pick(['se escapan','se rompen','se pierden','regala','come']);
+  return {id, text:`Había ${a} ${obj}. ${action.charAt(0).toUpperCase()+action.slice(1)} ${b}. ¿Cuántos quedan?`,
+    hint:`Total menos los que se van = los que quedan. ${a} − ${b} = ?`,
+    visual: visualBarMinus(a,b,'var(--coral)','var(--mint)'),
+    answer:a-b, points:15, isText:false};
+}
+
+function gen1_problemas(){
+  const templates = [
+    ()=>{ // join two groups
+      const n1=pick(names1), n2=pick(names1), obj=pick(objects1), a=r(3,12), b=r(2,10);
+      return {id:'p1_'+Date.now()+'_1',
+        text:`${n1} tiene ${a} ${obj} y ${n2} tiene ${b}. ¿Cuántos ${obj} tienen entre las dos?`,
+        hint:`Dibuja una barra para cada niña y únelas: ${a}+${b}=total.`,
+        visual: visualBarSum(a,b,'var(--pink)','var(--lavender)'), answer:a+b, points:18, isText:false};
+    },
+    ()=>{ // find remaining
+      const obj=pick(objects1), a=r(12,20), b=r(3,10);
+      const place=pick(places1);
+      return {id:'p1_'+Date.now()+'_2',
+        text:`En ${place} hay ${a} ${obj}. Se llevan ${b}. ¿Cuántos quedan?`,
+        hint:`Total − los que se llevan = los que quedan. Modelo de barras.`,
+        visual: visualBarMinus(a,b,'var(--sky)','var(--mint)'), answer:a-b, points:18, isText:false};
+    },
+    ()=>{ // find one part
+      const n=pick(names1), obj=pick(objects1), total=r(10,20), a=r(3,total-2);
+      return {id:'p1_'+Date.now()+'_3',
+        text:`Hay ${total} ${obj} en total. ${a} son de ${n}. ¿Cuántos son del resto?`,
+        hint:`Total = parte de ${n} + resto. Despeja: ${total} − ${a} = ?`,
+        visual: visualBarUnknown(a,total-a,total,'var(--orange)','var(--sky)'), answer:total-a, points:18, isText:false};
+    },
+    ()=>{ // comparison
+      const n1=pick(names1), n2=pick(names1), obj=pick(objects1), a=r(5,15), diff=r(2,7);
+      return {id:'p1_'+Date.now()+'_4',
+        text:`${n1} tiene ${a} ${obj}. ${n2} tiene ${diff} más. ¿Cuántos tiene ${n2}?`,
+        hint:`${n2} = ${n1} + ${diff} más. Modelo: barra de ${n1} y barra de ${n2}.`,
+        visual: visualBarSum(a,diff,'var(--pink)','var(--yellow)'), answer:a+diff, points:20, isText:false};
+    }
+  ];
+  return templates.map(fn=>fn());
+}
+
+// ============================================================
+// EXERCISE GENERATORS — LEVEL 5
+// ============================================================
+function gen5_ops(){
+  const types=['mult','div','powers','mcm','combined'];
+  return types.slice(0,4).map((t,i)=>make5_op(t,i+1));
+}
+
+function make5_op(type,num){
+  const id='o5_'+Date.now()+'_'+num;
+  if(type==='mult'){
+    const a=r(12,99), b=r(3,9);
+    return {id, text:`¿Cuánto es ${a} × ${b}?`,
+      hint:`Descompón ${a}: ${Math.floor(a/10)*10}×${b} + ${a%10}×${b}. Suma los resultados.`,
+      visual: visualDecomp(a,b,'×','var(--sky)','var(--lavender)'),
+      answer:a*b, points:15, isText:false};
+  }
+  if(type==='div'){
+    const b=pick([2,3,4,5,6,8]), res=r(10,99), a=b*res;
+    return {id, text:`¿Cuánto es ${a} ÷ ${b}?`,
+      hint:`¿Cuántas veces cabe el ${b} en ${a}? Descompón: ${Math.floor(a/(b*10))*b*10} ÷ ${b} + resto.`,
+      visual: visualBarDiv(a,b,'var(--sky)','var(--lavender)'),
+      answer:res, points:15, isText:false};
+  }
+  if(type==='powers'){
+    const base=pick([2,3,4,5,6,7,8,9,10,11,12]), exp=pick([2,3]);
+    const val = Math.pow(base,exp);
+    return {id, text:`¿Cuánto es ${base}${exp===2?'²':'³'}?`,
+      hint:`${base}${exp===2?'²':'³'} = ${base} multiplicado por sí mismo ${exp} veces: ${Array(exp).fill(base).join('×')}.`,
+      visual: visualPower(base,exp,'var(--sky)'),
+      answer:val, points:15, isText:false};
+  }
+  // mcm
+  const a=pick([2,3,4,5,6]), b=pick([3,4,5,6,8,10]);
+  let mcm=1; for(let i=1;i<=a*b;i++){ if(i%a===0&&i%b===0){mcm=i;break;} }
+  return {id, text:`Calcula el Mínimo Común Múltiplo de ${a} y ${b}.`,
+    hint:`Múltiplos de ${a}: ${[1,2,3,4,5].map(x=>x*a).join(', ')}... Múltiplos de ${b}: ${[1,2,3,4,5].map(x=>x*b).join(', ')}... ¿Cuál es el primero en común?`,
+    visual: visualMCM(a,b,mcm,'var(--sky)','var(--lavender)'),
+    answer:mcm, points:15, isText:false};
+}
+
+function gen5_fracciones(){
+  const types=['suma_frac','resta_frac','frac_decimal','frac_pct'];
+  return types.map((t,i)=>make5_frac(t,i+1));
+}
+
+function make5_frac(type,num){
+  const id='f5_'+Date.now()+'_'+num;
+  if(type==='suma_frac'){
+    const d=pick([4,6,8,10,12]), n1=r(1,d-1), n2=r(1,d-n1);
+    const [sn,sd]=simplify(n1+n2,d);
+    return {id, text:`¿Cuánto es ${n1}/${d} + ${n2}/${d}? Escribe la fracción simplificada.`,
+      hint:`Mismo denominador: suma los numeradores. ${n1}+${n2}=${n1+n2}. Luego simplifica.`,
+      visual: visualFracBar(n1,n2,d,'var(--sky)','var(--lavender)'),
+      answer: sd===1?String(sn):`${sn}/${sd}`, points:20, isText:true};
+  }
+  if(type==='resta_frac'){
+    const d=pick([4,6,8,10,12]), n2=r(1,d-2), n1=r(n2+1,d-1);
+    const [sn,sd]=simplify(n1-n2,d);
+    return {id, text:`¿Cuánto es ${n1}/${d} − ${n2}/${d}? Escribe la fracción simplificada.`,
+      hint:`Mismo denominador: resta los numeradores. ${n1}−${n2}=${n1-n2}. Luego simplifica.`,
+      visual: visualFracBar(n1,-n2,d,'var(--coral)','var(--mint)'),
+      answer: sd===1?String(sn):`${sn}/${sd}`, points:20, isText:true};
+  }
+  if(type==='frac_decimal'){
+    const pairs=[[1,2,0.5],[1,4,0.25],[3,4,0.75],[1,5,0.2],[2,5,0.4],[3,5,0.6],[4,5,0.8],[1,10,0.1],[3,10,0.3],[7,10,0.7]];
+    const [n,d,dec]=pick(pairs);
+    return {id, text:`Convierte ${n}/${d} a número decimal.`,
+      hint:`Divide el numerador entre el denominador: ${n} ÷ ${d} = ?`,
+      visual: visualFracToDecimal(n,d,'var(--sky)','var(--mint)'),
+      answer:dec, points:15, isText:false};
+  }
+  // frac_pct
+  const pairs=[[1,4,25],[1,2,50],[3,4,75],[1,5,20],[2,5,40],[3,5,60],[4,5,80],[1,10,10],[3,10,30],[7,10,70]];
+  const [n,d,pct]=pick(pairs);
+  return {id, text:`¿Qué porcentaje representa la fracción ${n}/${d}?`,
+    hint:`Multiplica por 100: (${n}÷${d})×100 = ?`,
+    visual: visualPctBar(n,d,pct,'var(--sky)','var(--lavender)'),
+    answer:pct, points:15, isText:false};
+}
+
+function gen5_problemas(){
+  const templates=[
+    ()=>{ // multiplicación contexto
+      const name=pick(names5), n=r(3,8), unit=r(50,200), item=pick(items5);
+      return {id:'pp5_'+Date.now()+'_1',
+        text:`${name} compra ${n} ${item} a ${unit}€ cada uno. ¿Cuánto paga en total?`,
+        hint:`Total = número × precio. Modelo de barras: ${n} grupos de ${unit}.`,
+        visual: visualBarGroups(n,unit,'var(--sky)'), answer:n*unit, points:20, isText:false};
+    },
+    ()=>{ // fracción de cantidad
+      const d=pick([2,4,5,10]), n=r(1,d-1), total=d*r(10,50);
+      const [sn,sd]=simplify(n,d);
+      return {id:'pp5_'+Date.now()+'_2',
+        text:`Una piscina tiene ${total} litros. Está llena ${sn}/${sd} de su capacidad. ¿Cuántos litros hay?`,
+        hint:`Calcula ${sn}/${sd} de ${total}: divide entre ${sd} y multiplica por ${sn}.`,
+        visual: visualFracOfTotal(sn,sd,total,'var(--sky)','var(--lavender)'),
+        answer:Math.round(total*sn/sd), points:22, isText:false};
+    },
+    ()=>{ // porcentaje
+      const total=pick([100,200,300,400,500,80,120,60,150,240]), pct=pick([10,20,25,30,50,75]);
+      const result=total*pct/100;
+      return {id:'pp5_'+Date.now()+'_3',
+        text:`Un libro tiene ${total} páginas. Ana ha leído el ${pct}%. ¿Cuántas páginas le faltan?`,
+        hint:`Leídas = ${pct}% de ${total} = ${result}. Faltan = ${total} − ${result}.`,
+        visual: visualPctBar2(pct,total,'var(--sky)','var(--lavender)'),
+        answer:total-result, points:22, isText:false};
+    },
+    ()=>{ // descuento
+      const price=pick([40,50,60,80,100,120,200,75,90]), disc=pick([10,20,25,30,50]);
+      const save=price*disc/100;
+      return {id:'pp5_'+Date.now()+'_4',
+        text:`Unas zapatillas cuestan ${price}€. Tienen un descuento del ${disc}%. ¿Cuánto pagas?`,
+        hint:`Descuento = ${disc}% de ${price} = ${save}€. Precio final = ${price} − ${save}.`,
+        visual: visualPctBar2(disc,price,'var(--coral)','var(--mint)'),
+        answer:price-save, points:22, isText:false};
+    }
+  ];
+  return templates.map(fn=>fn());
+}
+
+// ============================================================
+// VISUAL BUILDERS
+// ============================================================
+function visualPartWhole(a,b,total,c1,c2){
+  return `<div class="part-whole">
+    <div class="pw-box" style="border-color:${c1}"><div class="pw-label">Parte 1</div><div class="pw-value" style="color:${c1}">${a}</div></div>
+    <div style="font-size:1.3rem;font-weight:800">+</div>
+    <div class="pw-box" style="border-color:${c2}"><div class="pw-label">Parte 2</div><div class="pw-value" style="color:${c2}">${b}</div></div>
+    <div style="font-size:1.3rem;font-weight:800">=</div>
+    <div class="pw-box" style="border-color:var(--mint)"><div class="pw-label">Total</div><div class="pw-value" style="color:var(--mint)">?</div></div>
+  </div>`;
+}
+function visualMake10(a,b,c1){
+  const need=10-a, rest=b-need;
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">Paso 1:</span><div class="bar-visual" style="width:${a*4}%;background:${c1};min-width:30px">${a}</div><span style="margin:0 4px;font-weight:800">+ ${need} =</span><div class="bar-visual" style="background:var(--mint);min-width:30px">10</div></div>
+    <div class="bar-row"><span class="bar-label">Paso 2:</span><div class="bar-visual" style="background:var(--mint);min-width:30px">10</div><span style="margin:0 4px;font-weight:800">+ ${rest} =</span><div class="bar-visual" style="background:var(--lavender);min-width:30px">?</div></div>
+  </div>`;
+}
+function visualBarUnknown(part1,part2,total,c1,c2){
+  const p1pct=Math.round(part1/total*90), p2pct=Math.round(part2/total*90);
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:90%;background:var(--mint)">${total}</div></div>
+    <div class="bar-row"><span class="bar-label">Parte 1:</span><div class="bar-visual" style="width:${p1pct}%;background:${c1}">${part1}</div><div class="bar-visual" style="width:${p2pct}%;background:${c2};margin-left:3px">?</div></div>
+  </div>`;
+}
+function visualBarSum(a,b,c1,c2){
+  const total=a+b, ap=Math.round(a/total*88), bp=Math.round(b/total*88);
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">Parte 1:</span><div class="bar-visual" style="width:${ap}%;background:${c1};min-width:28px">${a}</div></div>
+    <div class="bar-row"><span class="bar-label">Parte 2:</span><div class="bar-visual" style="width:${bp}%;background:${c2};min-width:28px">${b}</div></div>
+    <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:${ap+bp}%;background:var(--mint);min-width:28px">?</div></div>
+  </div>`;
+}
+function visualBarMinus(a,b,c1,c2){
+  const bp=Math.round(b/a*88), rp=Math.round((a-b)/a*88);
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:88%;background:${c1}">${a}</div></div>
+    <div class="bar-row"><span class="bar-label">Quito:</span><div class="bar-visual" style="width:${bp}%;background:var(--coral);min-width:28px">${b}</div><div class="bar-visual" style="width:${rp}%;background:${c2};margin-left:3px;min-width:28px">?</div></div>
+  </div>`;
+}
+function visualDecomp(a,b,op,c1,c2){
+  const tens=Math.floor(a/10)*10, ones=a%10;
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">${tens}${op}${b} =</span><div class="bar-visual" style="width:70%;background:${c1};min-width:36px">${tens*b}</div></div>
+    ${ones?`<div class="bar-row"><span class="bar-label">${ones}${op}${b} =</span><div class="bar-visual" style="width:${Math.max(12,ones/a*70)}%;background:${c2};min-width:30px">${ones*b}</div></div>`:''}
+    <div class="bar-row"><span class="bar-label">Total =</span><div class="bar-visual" style="width:88%;background:var(--mint)">?</div></div>
+  </div>`;
+}
+function visualBarDiv(a,b,c1,c2){
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:88%;background:${c1}">${a}</div></div>
+    <div class="bar-row"><span class="bar-label">÷${b} grupos:</span>
+      ${Array(Math.min(b,6)).fill(0).map(()=>`<div class="bar-visual" style="width:${Math.floor(80/b)}%;background:${c2};margin:0 1px;min-width:20px">?</div>`).join('')}
+      ${b>6?`<span style="font-size:.75rem;color:#aaa">…+${b-6}</span>`:''}
+    </div>
+  </div>`;
+}
+function visualPower(base,exp,c1){
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">${base}${exp===2?'²':'³'} =</span>
+      ${Array(exp).fill(0).map((_,i)=>`<div class="bar-visual" style="background:${c1};min-width:32px;margin:0 2px">${base}</div>${i<exp-1?'<span style="font-weight:800;margin:0 2px">×</span>':''}`).join('')}
+    </div>
+    <div class="bar-row"><span class="bar-label">Resultado:</span><div class="bar-visual" style="width:60%;background:var(--mint)">?</div></div>
+  </div>`;
+}
+function visualMCM(a,b,mcm,c1,c2){
+  const ma=[1,2,3,4,5].map(x=>x*a), mb=[1,2,3,4,5].map(x=>x*b);
+  return `<div class="bar-model" style="font-size:.8rem">
+    <div class="bar-row" style="flex-wrap:wrap;gap:4px"><span class="bar-label">×${a}:</span>${ma.map(v=>`<div class="bar-visual" style="background:${v===mcm?'var(--mint)':c1};min-width:28px">${v}</div>`).join('')}</div>
+    <div class="bar-row" style="flex-wrap:wrap;gap:4px"><span class="bar-label">×${b}:</span>${mb.map(v=>`<div class="bar-visual" style="background:${v===mcm?'var(--mint)':c2};min-width:28px">${v}</div>`).join('')}</div>
+  </div>`;
+}
+function visualFracBar(n1,n2,d,c1,c2){
+  const isResta = n2<0;
+  const absn2=Math.abs(n2);
+  if(isResta){
+    return `<div class="bar-model">
+      <div class="bar-row"><span class="bar-label">${n1}/${d}:</span>${Array(n1).fill(0).map(()=>`<div class="bar-visual" style="background:${c1};min-width:${Math.max(18,Math.floor(80/d))}px;margin:0 1px">1/${d}</div>`).join('')}</div>
+      <div class="bar-row"><span class="bar-label">−${absn2}/${d}:</span>${Array(absn2).fill(0).map(()=>`<div class="bar-visual" style="background:var(--coral);min-width:${Math.max(18,Math.floor(80/d))}px;margin:0 1px">1/${d}</div>`).join('')}<span style="margin-left:6px;font-weight:800;color:var(--mint)">= ?</span></div>
+    </div>`;
+  }
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">${n1}/${d}:</span>${Array(n1).fill(0).map(()=>`<div class="bar-visual" style="background:${c1};min-width:${Math.max(18,Math.floor(80/d))}px;margin:0 1px">1/${d}</div>`).join('')}</div>
+    <div class="bar-row"><span class="bar-label">+${n2}/${d}:</span>${Array(n2).fill(0).map(()=>`<div class="bar-visual" style="background:${c2};min-width:${Math.max(18,Math.floor(80/d))}px;margin:0 1px">1/${d}</div>`).join('')}</div>
+    <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:${Math.round((n1+n2)/d*85)}%;background:var(--mint);min-width:30px">?</div></div>
+  </div>`;
+}
+function visualFracToDecimal(n,d,c1,c2){
+  return `<div class="part-whole">
+    <div class="pw-box" style="border-color:${c1}"><div class="pw-label">Fracción</div><div class="pw-value" style="color:${c1}">${n}/${d}</div></div>
+    <div style="font-size:1.8rem">→</div>
+    <div class="pw-box" style="border-color:${c2}"><div class="pw-label">Decimal</div><div class="pw-value" style="color:${c2}">?</div></div>
+  </div>`;
+}
+function visualPctBar(n,d,pct,c1,c2){
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">100%:</span><div class="bar-visual" style="width:88%;background:#ddd;color:#888">████████</div></div>
+    <div class="bar-row"><span class="bar-label">${n}/${d} =</span><div class="bar-visual" style="width:${Math.round(pct*0.85)}%;background:${c1};min-width:30px">?%</div></div>
+  </div>`;
+}
+function visualPctBar2(pct,total,c1,c2){
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:88%;background:#ddd;color:#666">${total}</div></div>
+    <div class="bar-row"><span class="bar-label">${pct}%:</span><div class="bar-visual" style="width:${Math.round(pct*.85)}%;background:${c1};min-width:30px">${Math.round(total*pct/100)}</div><div class="bar-visual" style="width:${Math.round((100-pct)*.85)}%;background:${c2};margin-left:3px;min-width:30px">?</div></div>
+  </div>`;
+}
+function visualBarGroups(n,unit,c1){
+  return `<div class="bar-model">
+    <div class="bar-row" style="flex-wrap:wrap;gap:3px"><span class="bar-label">${n} grupos:</span>
+      ${Array(Math.min(n,6)).fill(0).map(()=>`<div class="bar-visual" style="background:${c1};min-width:32px;margin:0 1px">${unit}</div>`).join('')}
+      ${n>6?`<span style="font-size:.75rem;color:#aaa">…</span>`:''}
+    </div>
+    <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:88%;background:var(--mint)">?</div></div>
+  </div>`;
+}
+function visualFracOfTotal(n,d,total,c1,c2){
+  return `<div class="bar-model">
+    <div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:88%;background:#ddd;color:#666">${total}</div></div>
+    <div class="bar-row"><span class="bar-label">1/${d}:</span><div class="bar-visual" style="width:${Math.round(88/d)}%;background:${c2};min-width:28px">${Math.round(total/d)}</div></div>
+    <div class="bar-row"><span class="bar-label">${n}/${d}:</span><div class="bar-visual" style="width:${Math.round(88*n/d)}%;background:${c1};min-width:28px">?</div></div>
+  </div>`;
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+function showHome(){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('home').classList.add('active');
+}
 
 function showLevel(n){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById('nivel'+n).classList.add('active');
-  const secs=n===1?['sumas','restas','problemas']:['ops','fracciones','problemas'];
-  secs.forEach(sec=>{if(state[n].sections[sec].current.length===0)loadSection(n,sec);});
+  const secs = n===1 ? ['sumas','restas','problemas'] : ['ops','fracciones','problemas'];
+  secs.forEach(sec=>{
+    if(state[n].sections[sec].current.length===0) loadSection(n,sec);
+  });
 }
 
 function showTab(levelId,tabIdx,btn){
@@ -250,74 +658,49 @@ function showTab(levelId,tabIdx,btn){
   document.querySelectorAll('#'+levelId+' .tab-content').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('#'+levelId+' .tab-content')[tabIdx].classList.add('active');
-  if(tabIdx===3){const lvl=levelId==='nivel1'?1:5;renderResults(lvl);}
+  if(tabIdx===3){ renderResults(levelId==='nivel1'?1:5); }
 }
 
-async function loadSection(lvl,sec){
-  const grid=document.getElementById('grid'+lvl+'-'+sec);
-  if(!grid)return;
-  grid.innerHTML=`<div class="ai-loading"><div class="ai-spinner"></div><div class="ai-loading-text">✨ La IA prepara nuevos ejercicios...</div></div>`;
-  const round=state[lvl].sections[sec].rounds+1;
-  const prompt=buildPrompt(lvl,sec,round);
-  try{
-    const response=await fetch("https://api.anthropic.com/v1/messages",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"claude-sonnet-4-20250514",max_tokens:1200,
-        system:`Eres un generador de ejercicios de matemáticas Método Singapur para niñas españolas. Responde SOLO con un array JSON válido. Sin texto adicional ni bloques markdown. Cada ejercicio tiene: id (string), text (enunciado), hint (pista método Singapur), answer (número o fracción como "3/4"), points (número), isText (boolean).`,
-        messages:[{role:"user",content:prompt}]
-      })
-    });
-    const data=await response.json();
-    let text=data.content.map(i=>i.text||'').join('');
-    text=text.replace(/```json|```/g,'').trim();
-    const exercises=JSON.parse(text);
-    state[lvl].sections[sec].current=exercises;
-    state[lvl].sections[sec].answered=0;
-    renderSection(lvl,sec,exercises);
-  }catch(e){
-    const fallback=getFallback(lvl,sec);
-    state[lvl].sections[sec].current=fallback;
-    state[lvl].sections[sec].answered=0;
-    renderSection(lvl,sec,fallback);
-  }
+// ============================================================
+// LOAD & RENDER
+// ============================================================
+function loadSection(lvl,sec){
+  const exercises = generateExercises(lvl,sec);
+  state[lvl].sections[sec].current = exercises;
+  state[lvl].sections[sec].answered = 0;
+  renderSection(lvl,sec,exercises);
 }
 
-function buildPrompt(lvl,sec,round){
-  const ctx1=['animales','juguetes','flores','caramelos','estrellas','mariposas','libros','colores'];
-  const ctx=ctx1[(round-1)%ctx1.length];
+function generateExercises(lvl,sec){
   if(lvl===1){
-    if(sec==='sumas')return`Genera 4 ejercicios de SUMAS para 1º Primaria (6-7 años), tanda ${round}, contexto ${ctx}. Sumas hasta 20, estrategia llegar al 10, descomposición, algún número desconocido. Hint menciona partes y total o modelo de barras. Points 10-15, isText false. Array JSON directo.`;
-    if(sec==='restas')return`Genera 4 ejercicios de RESTAS para 1º Primaria (6-7 años), tanda ${round}, contexto ${ctx}. Restas hasta 20, restar en dos pasos, algún número desconocido. Hint menciona quitar del total o contar hacia adelante. Points 10-15, isText false. Array JSON directo.`;
-    if(sec==='problemas')return`Genera 4 PROBLEMAS con historia para 1º Primaria (6-7 años), tanda ${round}, contexto ${ctx}. Sumas y restas hasta 20, situaciones cotidianas para niñas. Hint describe el modelo de barras. Points 15-20, isText false. Array JSON directo.`;
-  }else{
-    const tops={ops:['multiplicación por descomposición','división exacta','potencias','MCM y MCD','operaciones combinadas'],fracciones:['suma de fracciones','resta de fracciones','multiplicación de fracciones','fracciones y decimales','porcentajes'],problemas:['fracciones de cantidad','porcentajes y descuentos','proporcionalidad','decimales en contexto']};
-    const t=tops[sec][(round-1)%tops[sec].length];
-    if(sec==='ops')return`Genera 4 ejercicios de OPERACIONES para 5º Primaria (10-11 años), tanda ${round}, tema: ${t}. Hint con método Singapur. Points 15-20, isText false. Array JSON directo.`;
-    if(sec==='fracciones')return`Genera 4 ejercicios de FRACCIONES/DECIMALES para 5º Primaria (10-11 años), tanda ${round}, tema: ${t}. Para fracciones como respuesta: isText true, answer como "3/4". Para decimales/números: isText false. Hint con método Singapur. Points 15-25. Array JSON directo.`;
-    if(sec==='problemas')return`Genera 4 PROBLEMAS con historia para 5º Primaria (10-11 años), tanda ${round}, tema: ${t}. Situaciones cotidianas (tiendas, viajes, recetas). Hint con modelo de barras Singapur. Points 20-25. Array JSON directo.`;
+    if(sec==='sumas')    return gen1_sumas();
+    if(sec==='restas')   return gen1_restas();
+    if(sec==='problemas')return gen1_problemas();
+  } else {
+    if(sec==='ops')       return gen5_ops();
+    if(sec==='fracciones')return gen5_fracciones();
+    if(sec==='problemas') return gen5_problemas();
   }
+  return [];
 }
 
 function renderSection(lvl,sec,exercises){
-  const grid=document.getElementById('grid'+lvl+'-'+sec);
-  const round=state[lvl].sections[sec].rounds+1;
-  const labels={'1-sumas':'➕ Sumas','1-restas':'➖ Restas','1-problemas':'🧩 Problemas','5-ops':'🔢 Operaciones','5-fracciones':'🍕 Fracciones','5-problemas':'🧩 Problemas'};
-  const lbl=document.getElementById('label'+lvl+'-'+sec);
-  if(lbl)lbl.textContent=(labels[lvl+'-'+sec]||'Ejercicios')+' — Tanda '+round;
-  const c1=lvl===1?'var(--orange)':'var(--sky)';
-  const c2=lvl===1?'var(--yellow)':'var(--lavender)';
-  const wrapper=document.createElement('div');
-  wrapper.className='exercise-grid';
-  wrapper.innerHTML=exercises.map((ex,i)=>`
+  const grid = document.getElementById('grid'+lvl+'-'+sec);
+  const round = state[lvl].sections[sec].rounds + 1;
+  const labels = {'1-sumas':'➕ Sumas','1-restas':'➖ Restas','1-problemas':'🧩 Problemas','5-ops':'🔢 Operaciones','5-fracciones':'🍕 Fracciones','5-problemas':'🧩 Problemas'};
+  const lbl = document.getElementById('label'+lvl+'-'+sec);
+  if(lbl) lbl.textContent = (labels[lvl+'-'+sec]||'Ejercicios')+' — Tanda '+round;
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'exercise-grid';
+  wrapper.innerHTML = exercises.map((ex,i)=>`
     <div class="exercise-card" id="card-${ex.id}">
       <div class="exercise-num">Ejercicio ${i+1} · ${ex.points} pts</div>
       <div class="exercise-text">${ex.text}</div>
       <div class="exercise-hint">💡 ${ex.hint}</div>
       <div class="singapore-box">
         <div class="singapore-title">📊 Modelo Singapur</div>
-        ${buildVisual(ex,c1,c2)}
+        ${ex.visual}
       </div>
       <div class="answer-area">
         <input class="answer-input" id="input-${ex.id}" type="text"
@@ -335,162 +718,133 @@ function renderSection(lvl,sec,exercises){
   grid.appendChild(wrapper);
 }
 
-function buildVisual(ex,c1,c2){
-  const t=ex.text.toLowerCase();
-  if(t.includes('+')||t.includes('suma')||t.includes('más')||t.includes('junto')){
-    return`<div class="part-whole"><div class="pw-box" style="border-color:${c1}"><div class="pw-label">Parte 1</div><div class="pw-value" style="color:${c1}">A</div></div><div style="font-size:1.3rem">+</div><div class="pw-box" style="border-color:${c2}"><div class="pw-label">Parte 2</div><div class="pw-value" style="color:${c2}">B</div></div><div style="font-size:1.3rem">=</div><div class="pw-box" style="border-color:var(--mint)"><div class="pw-label">Total</div><div class="pw-value" style="color:var(--mint)">?</div></div></div>`;
-  }else if(t.includes('-')||t.includes('resta')||t.includes('quedan')||t.includes('sobran')||t.includes('quita')){
-    return`<div class="bar-model"><div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:${c1}">■■■■■</div></div><div class="bar-row"><span class="bar-label">Quito:</span><div class="bar-visual" style="width:45%;background:var(--coral)">—</div><div class="bar-visual" style="width:52%;background:var(--mint)">?</div></div></div>`;
-  }else if(t.includes('%')||t.includes('porcent')||t.includes('descuento')){
-    return`<div class="bar-model"><div class="bar-row"><span class="bar-label">100%:</span><div class="bar-visual" style="width:100%;background:${c1}">Total</div></div><div class="bar-row"><span class="bar-label">Parte:</span><div class="bar-visual" style="width:60%;background:${c2}">?%</div></div></div>`;
-  }else if(t.includes('×')||t.includes('triple')||t.includes('doble')||t.includes('multiplica')){
-    return`<div class="bar-model"><div class="bar-row"><span class="bar-label">Unidad:</span><div class="bar-visual" style="width:30%;background:${c2}">1×</div></div><div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:90%;background:${c1}">n×</div></div></div>`;
-  }else if(t.includes('÷')||t.includes('divide')||t.includes('reparte')){
-    return`<div class="bar-model"><div class="bar-row"><span class="bar-label">Total:</span><div class="bar-visual" style="width:100%;background:${c1}">■■■■■■</div></div><div class="bar-row"><span class="bar-label">Partes:</span><div class="bar-visual" style="width:31%;background:${c2}">1/n</div><div class="bar-visual" style="width:31%;background:${c2};margin:0 2px">1/n</div><div class="bar-visual" style="width:31%;background:${c2}">1/n</div></div></div>`;
-  }else{
-    return`<div class="bar-model"><div class="bar-row"><span class="bar-label">Dato:</span><div class="bar-visual" style="width:75%;background:${c1}">■■■■</div></div><div class="bar-row"><span class="bar-label">Resultado:</span><div class="bar-visual" style="width:50%;background:var(--mint)">?</div></div></div>`;
-  }
-}
-
+// ============================================================
+// CHECK ANSWER
+// ============================================================
 function checkAnswer(id,lvl,sec,correctAnswer,points,isText){
-  const input=document.getElementById('input-'+id);
-  const fb=document.getElementById('fb-'+id);
-  const card=document.getElementById('card-'+id);
-  const btn=document.getElementById('btn-'+id);
-  const given=input.value.trim();
-  if(!given){fb.textContent='✏️ Escribe tu respuesta.';fb.className='feedback wrong';return;}
-  if(input.disabled)return;
-  let correct=false;
-  if(isText){correct=normalizeFraction(given)===normalizeFraction(String(correctAnswer));}
-  else{const num=parseFloat(given.replace(',','.'));correct=!isNaN(num)&&Math.abs(num-parseFloat(correctAnswer))<0.01;}
-  input.disabled=true;btn.disabled=true;
-  if(correct){
-    card.className='exercise-card correct pop';
-    input.className='answer-input correct-input';
-    fb.textContent='🌟 ¡Muy bien! +'+points+' pts';
-    fb.className='feedback correct';
-    state[lvl].score+=points;
-    updateScoreBadge(lvl);
-  }else{
-    card.className='exercise-card wrong';
-    input.className='answer-input wrong-input';
-    fb.innerHTML='❌ No es correcto. La respuesta es <b>'+correctAnswer+'</b>';
-    fb.className='feedback wrong';
+  const input = document.getElementById('input-'+id);
+  const fb    = document.getElementById('fb-'+id);
+  const card  = document.getElementById('card-'+id);
+  const btn   = document.getElementById('btn-'+id);
+  const given = input.value.trim();
+
+  if(!given){ fb.textContent='✏️ Escribe tu respuesta primero.'; fb.className='feedback wrong'; return; }
+  if(input.disabled) return;
+
+  let correct = false;
+  if(isText){
+    correct = normalizeFraction(given) === normalizeFraction(String(correctAnswer));
+  } else {
+    const num = parseFloat(given.replace(',','.'));
+    correct = !isNaN(num) && Math.abs(num - parseFloat(correctAnswer)) < 0.01;
   }
-  const exText=state[lvl].sections[sec].current.find(e=>e.id===id)?.text||id;
-  state[lvl].history.push({text:exText,correct,given,answer:correctAnswer,points:correct?points:0,sec});
+
+  input.disabled = true;
+  btn.disabled   = true;
+
+  if(correct){
+    card.className = 'exercise-card correct pop';
+    input.className = 'answer-input correct-input';
+    fb.textContent = '🌟 ¡Muy bien! +'+points+' pts';
+    fb.className = 'feedback correct';
+    state[lvl].score += points;
+    updateScoreBadge(lvl);
+  } else {
+    card.className = 'exercise-card wrong';
+    input.className = 'answer-input wrong-input';
+    fb.innerHTML = '❌ No es correcto. La respuesta es <b>'+correctAnswer+'</b>';
+    fb.className = 'feedback wrong';
+  }
+
+  const exText = state[lvl].sections[sec].current.find(e=>e.id===id)?.text||id;
+  state[lvl].history.push({text:exText, correct, given, answer:correctAnswer, points:correct?points:0, sec});
+
   state[lvl].sections[sec].answered++;
-  if(state[lvl].sections[sec].answered>=state[lvl].sections[sec].current.length){
-    setTimeout(()=>showCompletionBanner(lvl,sec),600);
+  if(state[lvl].sections[sec].answered >= state[lvl].sections[sec].current.length){
+    setTimeout(()=>showCompletionBanner(lvl,sec), 700);
   }
 }
 
+// ============================================================
+// COMPLETION
+// ============================================================
 function showCompletionBanner(lvl,sec){
-  const grid=document.getElementById('grid'+lvl+'-'+sec);
-  const secState=state[lvl].sections[sec];
-  const total=secState.current.length;
-  const recent=state[lvl].history.slice(-total);
-  const correct=recent.filter(h=>h.correct).length;
-  const pct=Math.round(correct/total*100);
-  const emoji=pct===100?'🏆':pct>=70?'🌟':pct>=40?'😊':'💪';
-  const msg=pct===100?'¡Tanda perfecta!':pct>=70?'¡Muy bien hecho!':pct>=40?'¡Sigue practicando!':'¡No te rindas!';
-  const banner=document.createElement('div');
-  banner.className='completion-banner pop';
-  banner.innerHTML=`<span class="completion-emoji">${emoji}</span><div class="completion-title">${msg}</div><div class="completion-sub">${correct} de ${total} correctas · ${pct}% · ⭐ ${state[lvl].score} pts totales</div><button class="next-btn" onclick="nextRound(${lvl},'${sec}')">🚀 ¡Nueva tanda!</button>`;
+  const grid = document.getElementById('grid'+lvl+'-'+sec);
+  const secState = state[lvl].sections[sec];
+  const total   = secState.current.length;
+  const recent  = state[lvl].history.slice(-total);
+  const correct = recent.filter(h=>h.correct).length;
+  const pct     = Math.round(correct/total*100);
+  const emoji   = pct===100?'🏆':pct>=75?'🌟':pct>=50?'😊':'💪';
+  const msg     = pct===100?'¡Tanda perfecta!':pct>=75?'¡Muy bien hecho!':pct>=50?'¡Sigue practicando!':'¡Tú puedes!';
+
+  const banner = document.createElement('div');
+  banner.className = 'completion-banner pop';
+  banner.innerHTML = `
+    <span class="completion-emoji">${emoji}</span>
+    <div class="completion-title">${msg}</div>
+    <div class="completion-sub">
+      ${correct} de ${total} correctas · ${pct}%<br>
+      ⭐ <b>${state[lvl].score} puntos</b> totales
+    </div>
+    <button class="next-btn" onclick="nextRound(${lvl},'${sec}')">
+      🚀 ¡Nueva tanda de ejercicios!
+    </button>`;
+
   grid.innerHTML='';
   grid.appendChild(banner);
   secState.rounds++;
 }
 
 function nextRound(lvl,sec){
-  state[lvl].sections[sec].current=[];
+  state[lvl].sections[sec].current = [];
   loadSection(lvl,sec);
 }
 
+// ============================================================
+// RESULTS
+// ============================================================
 function renderResults(lvl){
-  const panel=document.getElementById('results'+lvl+'-panel');
-  const h=state[lvl].history;
-  const correct=h.filter(x=>x.correct).length;
-  const wrong=h.filter(x=>!x.correct).length;
-  const pct=h.length?Math.round(correct/h.length*100):0;
-  const totalRounds=Object.values(state[lvl].sections).reduce((s,sec)=>s+sec.rounds,0);
-  const stars=pct>=90?'⭐⭐⭐':pct>=60?'⭐⭐':pct>=30?'⭐':'';
+  const panel = document.getElementById('results'+lvl+'-panel');
+  const h = state[lvl].history;
+  const correct = h.filter(x=>x.correct).length;
+  const wrong   = h.filter(x=>!x.correct).length;
+  const pct     = h.length ? Math.round(correct/h.length*100) : 0;
+  const rounds  = Object.values(state[lvl].sections).reduce((s,sec)=>s+sec.rounds,0);
+  const stars   = pct>=90?'⭐⭐⭐':pct>=60?'⭐⭐':pct>=30?'⭐':'';
+
   panel.innerHTML=`
     <div class="results-summary">
       <div class="result-stat stat-correct"><span class="stat-num">${correct}</span><span class="stat-label">Correctas</span></div>
       <div class="result-stat stat-wrong"><span class="stat-num">${wrong}</span><span class="stat-label">Incorrectas</span></div>
-      <div class="result-stat stat-rounds"><span class="stat-num">${totalRounds}</span><span class="stat-label">Tandas</span></div>
+      <div class="result-stat stat-rounds"><span class="stat-num">${rounds}</span><span class="stat-label">Tandas</span></div>
       <div class="result-stat stat-score"><span class="stat-num">${state[lvl].score}</span><span class="stat-label">Puntos</span></div>
     </div>
     <div class="progress-container"><div class="progress-fill" style="width:${pct}%"></div></div>
-    <div style="text-align:right;font-size:.75rem;color:#aaa;margin-bottom:5px;font-weight:700">${pct}% de aciertos</div>
+    <div style="text-align:right;font-size:.75rem;color:#aaa;margin-bottom:4px;font-weight:700">${pct}% de aciertos totales</div>
     <div class="star-rating">${stars||(h.length===0?'¡Empieza a practicar! 🚀':'✨ ¡Sigue así!')}</div>
-    ${h.length>0?`<div class="results-list-title">Últimos ejercicios:</div>${[...h].reverse().slice(0,20).map(e=>e.correct
-      ?`<div class="result-item r-correct"><span class="r-icon">✅</span><div class="r-text">${e.text}<div class="r-answer">Respuesta: <b>${e.given}</b> (+${e.points} pts)</div></div></div>`
-      :`<div class="result-item r-wrong"><span class="r-icon">❌</span><div class="r-text">${e.text}<div class="r-answer">Tu respuesta: <b>${e.given}</b> · Correcta: <b>${e.answer}</b></div></div></div>`).join('')}`:''}
-    <button class="reset-btn" onclick="resetLevel(${lvl})">🔄 Borrar historial y empezar de cero</button>`;
+    ${h.length>0?`
+      <div class="results-list-title">Historial de ejercicios:</div>
+      ${[...h].reverse().slice(0,24).map(e=>e.correct
+        ?`<div class="result-item r-correct"><span class="r-icon">✅</span><div class="r-text">${e.text}<div class="r-answer">Tu respuesta: <b>${e.given}</b> (+${e.points} pts)</div></div></div>`
+        :`<div class="result-item r-wrong"><span class="r-icon">❌</span><div class="r-text">${e.text}<div class="r-answer">Tu resp: <b>${e.given}</b> · Correcta: <b>${e.answer}</b></div></div></div>`
+      ).join('')}`:''}
+    <button class="reset-btn" onclick="resetLevel(${lvl})">🔄 Borrar todo y empezar de cero</button>`;
 }
 
 function resetLevel(lvl){
-  const secs=lvl===1?['sumas','restas','problemas']:['ops','fracciones','problemas'];
-  secs.forEach(sec=>{state[lvl].sections[sec]={rounds:0,current:[],answered:0};});
-  state[lvl].score=0;state[lvl].history=[];
+  const secs = lvl===1?['sumas','restas','problemas']:['ops','fracciones','problemas'];
+  secs.forEach(sec=>{ state[lvl].sections[sec]={rounds:0,current:[],answered:0}; });
+  state[lvl].score=0; state[lvl].history=[];
   updateScoreBadge(lvl);
-  const levelId='nivel'+lvl;
-  document.querySelectorAll('#'+levelId+' .tab').forEach((t,i)=>t.classList.toggle('active',i===0));
-  document.querySelectorAll('#'+levelId+' .tab-content').forEach((c,i)=>c.classList.toggle('active',i===0));
+  const lid='nivel'+lvl;
+  document.querySelectorAll('#'+lid+' .tab').forEach((t,i)=>t.classList.toggle('active',i===0));
+  document.querySelectorAll('#'+lid+' .tab-content').forEach((c,i)=>c.classList.toggle('active',i===0));
   secs.forEach(sec=>loadSection(lvl,sec));
 }
 
-function updateScoreBadge(lvl){document.getElementById('score'+lvl+'-badge').textContent='⭐ '+state[lvl].score+' pts';}
-
-function normalizeFraction(str){
-  str=str.replace(/\s/g,'');
-  if(str.includes('/')){const [n,d]=str.split('/').map(Number);if(!d)return str;const g=gcd(Math.abs(n),Math.abs(d));return(n/g)+'/'+(d/g);}
-  return str;
-}
-function gcd(a,b){return b===0?a:gcd(b,a%b);}
-
-function getFallback(lvl,sec){
-  const f={
-    '1-sumas':[
-      {id:'fs1_1',text:'¿Cuánto es 7 + 5?',hint:'Llega primero al 10: 7+3=10. Luego suma 2 más. Modelo partes y total.',answer:12,points:10,isText:false},
-      {id:'fs1_2',text:'¿Cuánto es 9 + 6?',hint:'Descompón el 6 en 1+5. Suma 9+1=10, luego +5.',answer:15,points:10,isText:false},
-      {id:'fs1_3',text:'Completa: 8 + ___ = 14',hint:'¿Cuánto le falta al 8 para llegar a 14? Modelo de barras: 8+?=14.',answer:6,points:12,isText:false},
-      {id:'fs1_4',text:'Luna tiene 6 pegatinas y su amiga le da 9 más. ¿Cuántas tiene ahora?',hint:'Une las dos partes: 6 y 9. Total = parte 1 + parte 2.',answer:15,points:15,isText:false}
-    ],
-    '1-restas':[
-      {id:'fr1_1',text:'¿Cuánto es 13 − 5?',hint:'Resta hasta 10 primero: 13−3=10. Luego quita 2 más.',answer:8,points:10,isText:false},
-      {id:'fr1_2',text:'¿Cuánto es 17 − 8?',hint:'Piensa al revés: 8+?=17. Cuenta hacia adelante desde el 8.',answer:9,points:10,isText:false},
-      {id:'fr1_3',text:'Completa: 15 − ___ = 7',hint:'Si quedan 7 y había 15: 7+?=15. Modelo de barras.',answer:8,points:12,isText:false},
-      {id:'fr1_4',text:'Había 18 mariposas en el jardín. Volaron 9. ¿Cuántas quedan?',hint:'Total menos las que se van = las que quedan. 18−9=?',answer:9,points:15,isText:false}
-    ],
-    '1-problemas':[
-      {id:'fp1_1',text:'Sofía tiene 8 lápices rojos y 7 azules. ¿Cuántos lápices tiene en total?',hint:'Dibuja una barra para cada color y únelas: 8+7=total.',answer:15,points:15,isText:false},
-      {id:'fp1_2',text:'En una cesta hay 16 manzanas. Se comen 7. ¿Cuántas quedan?',hint:'Total − comidas = quedan. Modelo de barras: 16−7=?',answer:9,points:15,isText:false},
-      {id:'fp1_3',text:'Hay 20 niños en clase. 11 son niñas. ¿Cuántos son niños?',hint:'Total=niñas+niños. Despeja: 20−11=niños.',answer:9,points:18,isText:false},
-      {id:'fp1_4',text:'Ana tiene 5 cromos y Juan tiene 8. ¿Cuántos cromos tienen entre los dos?',hint:'Parte 1 + Parte 2 = Total. Modelo partes y todo.',answer:13,points:18,isText:false}
-    ],
-    '5-ops':[
-      {id:'fo5_1',text:'¿Cuánto es 347 × 6?',hint:'Descompón: 300×6 + 40×6 + 7×6. Suma los resultados.',answer:2082,points:15,isText:false},
-      {id:'fo5_2',text:'¿Cuánto es 864 ÷ 4?',hint:'Descompón 864=800+64. Divide cada parte entre 4.',answer:216,points:15,isText:false},
-      {id:'fo5_3',text:'Calcula el MCM de 6 y 8.',hint:'Múltiplos de 6: 6,12,18,24... Múltiplos de 8: 8,16,24... ¿Cuál es el primero en común?',answer:24,points:15,isText:false},
-      {id:'fo5_4',text:'¿Cuánto es 5² + 4²?',hint:'5²=25 y 4²=16. Suma los dos cuadrados.',answer:41,points:15,isText:false}
-    ],
-    '5-fracciones':[
-      {id:'ff5_1',text:'¿Cuánto es 1/3 + 1/6? Escribe la fracción simplificada.',hint:'Convierte 1/3 a sextos: 1/3=2/6. Luego suma los numeradores.',answer:'1/2',points:20,isText:true},
-      {id:'ff5_2',text:'¿Cuánto es 3/4 − 1/8? Escribe la fracción simplificada.',hint:'Convierte 3/4 a octavos: 3/4=6/8. Luego resta los numeradores.',answer:'5/8',points:20,isText:true},
-      {id:'ff5_3',text:'Convierte 3/5 a decimal.',hint:'Divide el numerador entre el denominador: 3÷5=?',answer:0.6,points:15,isText:false},
-      {id:'ff5_4',text:'¿Qué porcentaje es 2/5?',hint:'Multiplica por 100: 2÷5×100=?',answer:40,points:15,isText:false}
-    ],
-    '5-problemas':[
-      {id:'fp5_1',text:'María tiene 360 cromos. Pedro tiene el doble. ¿Cuántos tienen entre los dos?',hint:'Pedro=360×2=720. Total=María+Pedro. Modelo de barras.',answer:1080,points:22,isText:false},
-      {id:'fp5_2',text:'Una piscina tiene 2.000 litros. Se llena 3/4 de su capacidad. ¿Cuántos litros hay?',hint:'1/4 de 2000=500. Multiplica por 3 para hallar 3/4.',answer:1500,points:22,isText:false},
-      {id:'fp5_3',text:'Un libro tiene 480 páginas. Ana lleva leídas el 25%. ¿Cuántas le faltan?',hint:'25% de 480=120 páginas leídas. Faltan: 480−120.',answer:360,points:22,isText:false},
-      {id:'fp5_4',text:'Unas zapatillas cuestan 60€ con un 30% de descuento. ¿Cuánto pagas?',hint:'Descuento=30% de 60=18€. Precio final=60−18.',answer:42,points:22,isText:false}
-    ]
-  };
-  return f[lvl+'-'+sec]||[];
+function updateScoreBadge(lvl){
+  document.getElementById('score'+lvl+'-badge').textContent='⭐ '+state[lvl].score+' pts';
 }
 </script>
 </body>
